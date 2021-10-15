@@ -55,7 +55,7 @@
 
         "min>max": {
             "type": "float",
-            "min": 10.0,
+            "min": "foo",
             "max": 0.0,
             "decimals": 3,
             "default": 0.0

@@ -2,7 +2,7 @@
 #include <QCommandLineParser>
 #include <QFile>
 #include <QJsonDocument>
-#include <zera-json-params-structure.h>
+#include "zera-json-params-structure.h"
 
 int main(int argc, char *argv[])
 {

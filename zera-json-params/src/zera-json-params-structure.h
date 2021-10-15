@@ -30,7 +30,6 @@ public:
     const QJsonObject& jsonStructure();
 
     QJsonObject createDefaultJsonState();
-
     ErrList validateJsonState(const QJsonObject &jsonState);
 
 private:
