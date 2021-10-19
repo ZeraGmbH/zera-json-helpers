@@ -1,34 +1,38 @@
+cmake_minimum_required(VERSION 3.17)
 # set project name and language
 project(zera-json-params LANGUAGES CXX
-    VERSION ${REPO_VERSION}
+VERSION ${REPO_VERSION}
 )
 
 # find required depemdencies
 find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
+find_package(GTest REQUIRED)
 
 file(GLOB HEADER
-    ${PROJECT_SOURCE_DIR}/*.h
+    ${PROJECT_SOURCE_DIR}/src/*.h
     )
 
-# create library 
+file(GLOB SOURCE
+    ${PROJECT_SOURCE_DIR}/src/*.cpp
+    )
+
+file(GLOB TEST_FILES
+    ${PROJECT_SOURCE_DIR}/test/json-param-test-files/*.json
+    )
+
+# zera-json-params
+########################
 add_library(zera-json-params SHARED
     ${HEADER}
-    ${CMAKE_CURRENT_SOURCE_DIR}/zera-json-params-structure.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/zera-json-merge.cpp
+    ${SOURCE}
 )
 
 # announce headers - target perspective
 target_include_directories(zera-json-params
     PUBLIC
-    $<INSTALL_INTERFACE:include/zera-classes/zera-json-params>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-    PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include/zera-json-params>
     )
-
-# set target Version
-set_target_properties(zera-json-params PROPERTIES VERSION ${PROJECT_VERSION})
-set_target_properties(zera-json-params PROPERTIES SOVERSION ${PROJECT_VERSION_MAJOR})
 
 target_link_libraries(zera-json-params
     PRIVATE
@@ -45,7 +49,7 @@ generate_export_header(zera-json-params)
 # install export header
 install(FILES
     ${CMAKE_CURRENT_BINARY_DIR}/zera-json-params_export.h
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/zera-classes/zera-json-params
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/zera-json-params
     )
 
 # install library
@@ -85,16 +89,15 @@ install(
     )
 
 
-
-
-# create executable
+# zera-json-params-cli
+####################
 add_executable(zera-json-params-cli
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
 target_include_directories(zera-json-params-cli
    PRIVATE
-   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
 
 # link dependencies
