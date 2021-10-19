@@ -113,3 +113,35 @@ target_link_libraries(zera-json-params-cli
 install(TARGETS zera-json-params-cli
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+# Unittest
+####################
+add_executable(zera-json-params-unittest
+    unittest/type-unittest.cpp
+    unittest/template-unittest.cpp
+    unittest/zerajsonhelper.cpp
+    unittest/zerajsonhelper.h
+    ${TEST_FILES}
+    )
+
+target_link_libraries(zera-json-params-unittest
+    gtest
+    gtest_main
+    Qt5::Core
+    # lin to test
+    zera-json-params
+)
+
+target_include_directories(zera-json-params-unittest
+    PUBLIC
+    $<INSTALL_INTERFACE:src>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+enable_testing()
+add_test(NAME    zera-json-params-unittest
+         COMMAND zera-json-params-unittest
+)
