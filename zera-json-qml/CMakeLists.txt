@@ -62,7 +62,7 @@ install(TARGETS zera-json-qml
 # configure *ConfigVersion.cmake
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-    zera-json-paramsConfigVersion.cmake
+    zera-json-qmlConfigVersion.cmake
     VERSION ${PACKAGE_VERSION}
     COMPATIBILITY SameMinorVersion
     )

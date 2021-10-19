@@ -85,7 +85,7 @@ install(EXPORT zera-json-paramsExport
 # install public headers
 install(
     FILES ${HEADER}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/zera-classes/zera-json-params
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/zera-json-params
     )
 
 

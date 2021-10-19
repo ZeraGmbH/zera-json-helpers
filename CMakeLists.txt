@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.17)
 project(zera-json-params-top LANGUAGES CXX
 )
 
+include(GNUInstallDirs)
+
 set(PROJECT_VERSION_MAJOR "1")
 set(PROJECT_VERSION_MINOR "0")
 set(PROJECT_VERSION_PATCH "1")
