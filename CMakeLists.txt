@@ -14,3 +14,6 @@ set(REPO_VERSION ${PROJECT_VERSION})
 
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/zera-json-params)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/zera-json-qml)
+
+enable_testing()
+
