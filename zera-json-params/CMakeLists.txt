@@ -6,7 +6,7 @@ VERSION ${REPO_VERSION}
 
 # find required depemdencies
 find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
-find_package(GTest REQUIRED)
+find_package(GTest)
 
 file(GLOB HEADER
     ${PROJECT_SOURCE_DIR}/src/*.h
@@ -116,6 +116,8 @@ install(TARGETS zera-json-params-cli
 
 # Unittest
 ####################
+if(${GTest_FOUND})
+message(STATUS "building with unittest")
 add_executable(zera-json-params-unittest
     unittest/type-unittest.cpp
     unittest/template-unittest.cpp
@@ -145,3 +147,4 @@ enable_testing()
 add_test(NAME    zera-json-params-unittest
          COMMAND zera-json-params-unittest
 )
+endif()
