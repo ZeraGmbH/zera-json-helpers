@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 # set project name and language
-project(zera-json-params-top LANGUAGES CXX
+project(zera-json-helpers LANGUAGES CXX
 )
 
 include(GNUInstallDirs)
