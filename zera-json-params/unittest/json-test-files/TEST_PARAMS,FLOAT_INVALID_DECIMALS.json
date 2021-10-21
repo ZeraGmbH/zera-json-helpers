@@ -1,0 +1,60 @@
+{
+    "params": {
+        "decimals-missing": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "default": 5.0
+        },
+        "decimals-invalid-type-1": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": "",
+            "default": 5.0
+        },
+        "decimals-invalid-type-2": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": true,
+            "default": 5.0
+        },
+        "decimals-invalid-type-3": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": "foo",
+            "default": 5.0
+        },
+        "decimals-invalid-type-4": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": { "foo": "bar" },
+            "default": 5.0
+        },
+        "decimals-invalid-type-5": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": [ "foo", "bar" ],
+            "default": 5.0
+        },
+        "decimals-out-of-range-1": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 11,
+            "default": 5.0
+        },
+        "decimals-out-of-range-2": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": -1,
+            "default": 5.0
+        }
+    }
+}
+

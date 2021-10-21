@@ -1,0 +1,30 @@
+{
+    "params": {
+        "valid-float": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 3,
+            "default": 10.0
+        },
+        "valid-int": {
+            "type": "int",
+            "min": 0.0,
+            "max": 10.0,
+            "default": 0.0
+        },
+        "valid-bool": {
+            "type": "bool",
+            "default": false
+        },
+        "valid-string": {
+            "type": "string",
+            "default": "foo"
+        },
+        "valid-oneof": {
+            "type": "oneof-list",
+            "list": [ "var", "sync" ],
+            "default": "var"
+        }
+    }
+}

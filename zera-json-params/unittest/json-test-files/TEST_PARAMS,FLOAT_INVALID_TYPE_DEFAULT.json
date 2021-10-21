@@ -1,0 +1,38 @@
+{
+    "params": {
+        "float-invalid-type-default-1": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 2,
+            "default": true
+        },
+        "float-invalid-type-default-2": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 2,
+            "default": "foo"
+        },
+        "float-invalid-type-default-3": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 2,
+            "default": {
+                "value": "foo"
+            }
+        },
+        "float-invalid-type-default-4": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 2,
+            "default": [
+                "foo1",
+                "foo2"
+            ]
+        }
+    }
+}
+

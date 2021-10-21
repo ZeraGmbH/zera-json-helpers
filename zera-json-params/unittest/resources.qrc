@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>json-test-files/TEST_TEMPLATE,VALID.json</file>
+        <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT.json</file>
+        <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT_RESOLVE_EXPECTED.json</file>
+        <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT_NESTED.json</file>
+        <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT_NESTED_EXPECTED.json</file>
+        <file>json-test-files/TEST_TEMPLATE,VALID_ALL_TYPES.json</file>
+        <file>json-test-files/TEST_TEMPLATE,VALID_ALL_TYPES_DEFAULT.json</file>
+        <file>json-test-files/TEST_TEMPLATE,MIN_LARGER_MAX.json</file>
+        <file>json-test-files/TEST_TEMPLATE,INVALID_TYPE.json</file>
+        <file>json-test-files/TEST_TEMPLATE,INVALID_LINK.json</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>json-test-files/TEST_PARAMS,VALID.json</file>
+        <file>json-test-files/TEST_PARAMS,TYPE_MISSING.json</file>
+        <file>json-test-files/TEST_PARAMS,TYPE_INVALID.json</file>
+        <file>json-test-files/TEST_PARAMS,PROPERTY_INVALID.json</file>
+        <file>json-test-files/TEST_PARAMS,DEFAULT_MISSING.json</file>
+        <file>json-test-files/TEST_PARAMS,MIN_MAX_MISSING.json</file>
+        <file>json-test-files/TEST_PARAMS,MIN_MAX_INVALID.json</file>
+        <file>json-test-files/TEST_PARAMS,MIN_MAX_DEFAULT_LIMITS.json</file>
+        <file>json-test-files/TEST_PARAMS,BOOL_INVALID_TYPE_DEFAULT.json</file>
+        <file>json-test-files/TEST_PARAMS,INT_INVALID_TYPE_DEFAULT.json</file>
+        <file>json-test-files/TEST_PARAMS,FLOAT_INVALID_TYPE_DEFAULT.json</file>
+        <file>json-test-files/TEST_PARAMS,FLOAT_INVALID_DECIMALS.json</file>
+    </qresource>
+</RCC>

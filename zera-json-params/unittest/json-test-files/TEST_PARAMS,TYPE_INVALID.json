@@ -1,0 +1,8 @@
+{
+    "params": {
+        "invalid-type": {
+            "type": "foo",
+            "default": false
+        }
+    }
+}

@@ -4,7 +4,9 @@ project(zera-json-params LANGUAGES CXX
 VERSION ${REPO_VERSION}
 )
 
-# find required depemdencies
+set(CMAKE_AUTORCC ON)
+
+# find required dependencies
 find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
 find_package(GTest)
 
@@ -14,10 +16,6 @@ file(GLOB HEADER
 
 file(GLOB SOURCE
     ${PROJECT_SOURCE_DIR}/src/*.cpp
-    )
-
-file(GLOB TEST_FILES
-    ${PROJECT_SOURCE_DIR}/test/json-param-test-files/*.json
     )
 
 # zera-json-params
@@ -123,12 +121,33 @@ install(TARGETS zera-json-params-cli
 if(${GTest_FOUND})
 message(STATUS "building with unittest")
 add_executable(zera-json-params-unittest
-    unittest/type-unittest.cpp
-    unittest/template-unittest.cpp
+    unittest/resources.qrc
+    unittest/unittest-param.cpp
+    unittest/unittest-template.cpp
     unittest/zerajsonhelper.cpp
     unittest/zerajsonhelper.h
-    ${TEST_FILES}
     )
+
+
+file(GLOB TEST_RESOURCE_FILES
+    unittest/json-test-files/*.json
+    )
+
+# check for valid devinfo / display in qt-creator
+add_custom_target(zera-json-params-unittest-dont-forget-qrc ALL
+    SOURCES ${TEST_RESOURCE_FILES}
+    #COMMAND ${JSONLINT} ${TEST_RESOURCE_FILES}
+    )
+
+# check if all json test files made it into resources.qrc
+foreach(jsonfile ${TEST_RESOURCE_FILES})
+    get_filename_component(filename ${jsonfile} NAME)
+    file(STRINGS unittest/resources.qrc lines REGEX "${filename}")
+    if(NOT lines)
+        message(FATAL_ERROR "${filename} was not added to resources.qrc - unittests will fail!!!")
+    endif()
+endforeach()
+
 
 target_link_libraries(zera-json-params-unittest
     gtest

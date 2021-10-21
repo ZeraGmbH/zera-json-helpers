@@ -1,0 +1,26 @@
+{
+    "params": {
+        "bool-default-missing": {
+            "type": "bool"
+        },
+        "float-default-missing": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 2
+        },
+        "int-default-missing": {
+            "type": "int",
+            "min": 0,
+            "max": 10
+        },
+        "string-default-missing": {
+            "type": "string"
+        },
+        "oneof-list-default-missing": {
+            "type": "oneof-list",
+            "list": ["foo", "bar"]
+        }
+    }
+}
+
