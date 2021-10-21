@@ -151,6 +151,17 @@ TEST(TEST_PARAMS,FLOAT_INVALID_DECIMALS) {
     }
 }
 
+// negative: string invalid type default
+TEST(TEST_PARAMS,STRING_INVALID_TYPE_DEFAULT) {
+    QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,STRING_INVALID_TYPE_DEFAULT");
+    cZeraJsonParamsStructure jsonParamStructure;
+    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
+    EXPECT_EQ(errListStructure.length(), 4);
+    for(auto err : errListStructure) {
+        EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
+    }
+}
+
 
 
 

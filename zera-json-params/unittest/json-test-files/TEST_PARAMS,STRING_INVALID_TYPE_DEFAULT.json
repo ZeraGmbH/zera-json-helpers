@@ -1,0 +1,26 @@
+{
+    "params": {
+        "string-invalid-type-default-1": {
+            "type": "string",
+            "default": true
+        },
+        "string-invalid-type-default-2": {
+            "type": "string",
+            "default": 0.0
+        },
+        "string-invalid-type-default-3": {
+            "type": "string",
+            "default": {
+                "value": "foo"
+            }
+        },
+        "string-invalid-type-default-4": {
+            "type": "string",
+            "default": [
+                "foo1",
+                "foo2"
+            ]
+        }
+    }
+}
+
