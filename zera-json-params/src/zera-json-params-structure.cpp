@@ -55,8 +55,8 @@ cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::validateJsonState(co
 void cZeraJsonParamsStructure::resolveJsonParamTemplates(QJsonObject &jsonStructObj, ErrList& errList)
 {
     // Find "param_templates" object and start recursive resolve
-    QJsonValue paramTemplateValue = jsonStructObj["param_templates"];
-    if(!paramTemplateValue.isNull()) { // param_templates can be ommitted
+    if(jsonStructObj.contains("param_templates")) { // param_templates can be ommitted
+        QJsonValue paramTemplateValue = jsonStructObj["param_templates"];
         if(paramTemplateValue.isObject()) {
             QJsonObject jsonParamTemplatesObj = paramTemplateValue.toObject();
             // validate param_templates
