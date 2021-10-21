@@ -9,8 +9,8 @@ cZeraJsonParamsStructure::cZeraJsonParamsStructure()
 cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::loadStructure(QJsonObject jsonStructure)
 {
     ErrList errList;
-    // resolve param state templates & validate
-    if(errList.isEmpty()) {
+    if(!jsonStructure.isEmpty()) {
+        // resolve param state templates & validate
         // Note: param templates are validated during resolve activity
         resolveJsonParamTemplates(jsonStructure, errList);
         // now params are complete for validation
@@ -19,6 +19,10 @@ cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::loadStructure(QJsonO
         if(errList.isEmpty()) {
             m_jsonObjStructure = jsonStructure;
         }
+    }
+    else {
+        errEntry error(ERR_INVALID_PARAM_DEFINITION, QStringLiteral("Empty structure"));
+        errList.push_back(error);
     }
     return errList;
 }
