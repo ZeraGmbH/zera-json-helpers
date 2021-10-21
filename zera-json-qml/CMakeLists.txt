@@ -42,6 +42,9 @@ target_link_libraries(zera-json-qml
     "-Wl,--no-undefined"
     )
 
+#set target Version
+set_target_properties(zera-json-qml PROPERTIES VERSION ${PROJECT_VERSION})
+
 # generate export header
 include(GenerateExportHeader)
 generate_export_header(zera-json-qml)
