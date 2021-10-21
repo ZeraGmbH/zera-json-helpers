@@ -127,7 +127,7 @@ QHash<QString, QStringList> cZeraJsonParamsStructure::m_svalidParamTypes {
     { "int",   QStringList() << "min" << "max" << "default"},
     { "float", QStringList() << "min" << "max" << "decimals" << "default"},
     { "string", QStringList() << "default"},
-    { "strlist", QStringList() << "list" << "default"},
+    { "oneof-list", QStringList() << "list" << "default"},
 };
 
 
