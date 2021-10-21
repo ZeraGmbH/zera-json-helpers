@@ -1,0 +1,11 @@
+{
+    "param_templates": {
+        "param_float": {
+            "type": "float",
+            "min": 0.0,
+            "max": -10.0,
+            "decimals": 3,
+            "default": 5.0
+        }
+    }
+}

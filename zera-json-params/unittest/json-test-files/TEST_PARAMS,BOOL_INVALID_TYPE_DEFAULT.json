@@ -1,0 +1,26 @@
+{
+    "params": {
+        "bool-invalid-type-default-1": {
+            "type": "bool",
+            "default": 230.0
+        },
+        "bool-invalid-type-default-2": {
+            "type": "bool",
+            "default": "foo"
+        },
+        "bool-invalid-type-default-3": {
+            "type": "bool",
+            "default": {
+                "value": "foo"
+            }
+        },
+        "bool-invalid-type-default-4": {
+            "type": "bool",
+            "default": [
+                "foo1",
+                "foo2"
+            ]
+        }
+    }
+}
+

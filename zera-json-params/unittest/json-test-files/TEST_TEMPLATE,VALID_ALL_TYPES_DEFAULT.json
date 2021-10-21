@@ -1,0 +1,22 @@
+{
+    "bool_params": {
+        "param_from_template": false,
+        "param_from_override": true
+    },
+    "int_params": {
+        "param_from_template": 5,
+        "param_from_override": 10
+    },
+    "float_params": {
+        "param_from_template": 5.0,
+        "param_from_override": 10.0
+    },
+    "string_params": {
+        "param_from_template": "foo",
+        "param_from_override": "bar"
+    },
+    "oneof-list_params": {
+        "param_from_template": "foo",
+        "param_from_override": "bar"
+    }
+}

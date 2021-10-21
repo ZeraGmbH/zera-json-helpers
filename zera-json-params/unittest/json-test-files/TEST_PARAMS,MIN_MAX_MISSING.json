@@ -1,0 +1,27 @@
+{
+    "params": {
+        "int-min-missing": {
+            "type": "int",
+            "max": 10,
+            "default": 1
+        },
+        "float-min-missing": {
+            "type": "float",
+            "max": 10.0,
+            "decimals": 2,
+            "default": 1.0
+        },
+        "int-max-missing": {
+            "type": "int",
+            "min": 0,
+            "default": 1
+        },
+        "float-max-missing": {
+            "type": "float",
+            "min": 0.0,
+            "decimals": 2,
+            "default": 1.0
+        }
+    }
+}
+

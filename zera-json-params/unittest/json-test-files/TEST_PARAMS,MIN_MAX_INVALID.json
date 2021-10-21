@@ -1,0 +1,111 @@
+{
+    "params": {
+        "int-min-type-invalid-1": {
+            "type": "int",
+            "min": true,
+            "max": 10,
+            "default": 1
+        },
+        "int-min-type-invalid-2": {
+            "type": "int",
+            "min": "foo",
+            "max": 10,
+            "default": 1
+        },
+        "int-min-type-invalid-3": {
+            "type": "int",
+            "min": { "foo": "bar" },
+            "max": 10,
+            "default": 1
+        },
+        "int-min-type-invalid-4": {
+            "type": "int",
+            "min": [ "foo", "bar" ],
+            "max": 10,
+            "default": 1
+        },
+        "int-max-type-invalid-1": {
+            "type": "int",
+            "max": true,
+            "min": 0,
+            "default": 0
+        },
+        "int-max-type-invalid-2": {
+            "type": "int",
+            "max": "foo",
+            "min": 0,
+            "default": 0
+        },
+        "int-max-type-invalid-3": {
+            "type": "int",
+            "max": { "foo": "bar" },
+            "min": 0,
+            "default": 0
+        },
+        "int-max-type-invalid-4": {
+            "type": "int",
+            "max": [ "foo", "bar" ],
+            "min": 0,
+            "default": 0
+        },
+
+        "float-min-type-invalid-1": {
+            "type": "float",
+            "min": true,
+            "max": 10,
+            "decimals": 1,
+            "default": 1
+        },
+        "float-min-type-invalid-2": {
+            "type": "float",
+            "min": "foo",
+            "max": 10,
+            "decimals": 1,
+            "default": 1
+        },
+        "float-min-type-invalid-3": {
+            "type": "float",
+            "min": { "foo": "bar" },
+            "max": 10,
+            "decimals": 1,
+            "default": 1
+        },
+        "float-min-type-invalid-4": {
+            "type": "float",
+            "min": [ "foo", "bar" ],
+            "max": 10,
+            "decimals": 1,
+            "default": 1
+        },
+        "float-max-type-invalid-1": {
+            "type": "float",
+            "max": true,
+            "min": 0,
+            "decimals": 1,
+            "default": 0
+        },
+        "float-max-type-invalid-2": {
+            "type": "float",
+            "max": "foo",
+            "min": 0,
+            "decimals": 1,
+            "default": 0
+        },
+        "float-max-type-invalid-3": {
+            "type": "float",
+            "max": { "foo": "bar" },
+            "min": 0,
+            "decimals": 1,
+            "default": 0
+        },
+        "float-max-type-invalid-4": {
+            "type": "float",
+            "max": [ "foo", "bar" ],
+            "min": 0,
+            "decimals": 1,
+            "default": 0
+        }
+
+    }
+}
+

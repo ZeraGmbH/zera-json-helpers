@@ -1,0 +1,13 @@
+{
+    "params": {
+        "invalid-property": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 3,
+            "default": 0.0,
+            "foo": "bar"
+        }
+    }
+}
+

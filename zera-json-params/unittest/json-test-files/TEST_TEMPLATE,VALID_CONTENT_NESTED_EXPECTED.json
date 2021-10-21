@@ -1,0 +1,22 @@
+{
+    "params": {
+        "param_from_template": {
+            "type": "float",
+            "min": 0.0,
+            "max": 10.0,
+            "decimals": 3,
+            "default": 5.0
+         }
+    },
+    "nested_param": {
+        "params": {
+            "param_from_template": {
+                "type": "float",
+                "min": 0.0,
+                "max": 10.0,
+                "decimals": 3,
+                "default": 5.0
+            }
+        }
+    }
+}
