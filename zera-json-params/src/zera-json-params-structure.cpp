@@ -207,7 +207,13 @@ void cZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter
                     errList.push_back(error);
                 }
             }
-            //
+            else if(type == "string") {
+                if(!paramObject["default"].isString()) {
+                    errEntry error(inTemplate ? ERR_INVALID_PARAM_TEMPLATE_DEFINITION : ERR_INVALID_PARAM_DEFINITION,
+                                   treePosPrint + ".default not a string");
+                    errList.push_back(error);
+                }
+            }
         }
         // max > min / default out of limit - classic late night bugs introduced
         if(paramObject.contains("max") && paramObject.contains("min")) {
