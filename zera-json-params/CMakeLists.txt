@@ -41,6 +41,10 @@ target_link_libraries(zera-json-params
     "-Wl,--no-undefined"
     )
 
+
+#set target Version
+set_target_properties(zera-json-params PROPERTIES VERSION ${PROJECT_VERSION})
+
 # generate export header
 include(GenerateExportHeader)
 generate_export_header(zera-json-params)
