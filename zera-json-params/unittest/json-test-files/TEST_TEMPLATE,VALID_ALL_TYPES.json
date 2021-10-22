@@ -1,5 +1,5 @@
 {
-    "param_templates": {
+    "zj_param_templates": {
         "template_bool": {
             "type": "bool",
             "default": false
@@ -22,27 +22,27 @@
         }
     },
     "bool_params": {
-        "params": {
-            "param_from_template": { "param_template": "template_bool" },
-            "param_from_override": { "param_template": "template_bool", "default": true }
+        "zj_params": {
+            "param_from_template": { "zj_param_template": "template_bool" },
+            "param_from_override": { "zj_param_template": "template_bool", "default": true }
         }
     },
     "number_params": {
-        "params": {
-            "param_from_template": { "param_template": "template_number" },
-            "param_from_override": { "param_template": "template_number", "default": 10.0 }
+        "zj_params": {
+            "param_from_template": { "zj_param_template": "template_number" },
+            "param_from_override": { "zj_param_template": "template_number", "default": 10.0 }
         }
     },
     "string_params": {
-        "params": {
-            "param_from_template": { "param_template": "template_string" },
-            "param_from_override": { "param_template": "template_string", "default": "bar" }
+        "zj_params": {
+            "param_from_template": { "zj_param_template": "template_string" },
+            "param_from_override": { "zj_param_template": "template_string", "default": "bar" }
         }
     },
     "oneof-list_params": {
-        "params": {
-            "param_from_template": { "param_template": "template_oneof-list" },
-            "param_from_override": { "param_template": "template_oneof-list", "default": "bar" }
+        "zj_params": {
+            "param_from_template": { "zj_param_template": "template_oneof-list" },
+            "param_from_override": { "zj_param_template": "template_oneof-list", "default": "bar" }
         }
     }
 }

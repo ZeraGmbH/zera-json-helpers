@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "bool-invalid-type-default-1": {
             "type": "bool",
             "default": 230.0

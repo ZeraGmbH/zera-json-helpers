@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "valid-number": {
             "type": "number",
             "min": 0.0,

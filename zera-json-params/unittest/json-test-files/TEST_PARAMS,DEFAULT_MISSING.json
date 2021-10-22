@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "bool-default-missing": {
             "type": "bool"
         },

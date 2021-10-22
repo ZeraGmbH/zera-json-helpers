@@ -54,22 +54,22 @@ cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::validateJsonState(co
 
 void cZeraJsonParamsStructure::resolveJsonParamTemplates(QJsonObject &jsonStructObj, ErrList& errList)
 {
-    // Find "param_templates" object and start recursive resolve
-    if(jsonStructObj.contains("param_templates")) { // param_templates can be ommitted
-        QJsonValue paramTemplateValue = jsonStructObj["param_templates"];
+    // Find "zj_param_templates" object and start recursive resolve
+    if(jsonStructObj.contains("zj_param_templates")) { // param_templates can be ommitted
+        QJsonValue paramTemplateValue = jsonStructObj["zj_param_templates"];
         if(paramTemplateValue.isObject()) {
             QJsonObject jsonParamTemplatesObj = paramTemplateValue.toObject();
             // validate param_templates
             for(QJsonObject::ConstIterator iter=jsonParamTemplatesObj.begin(); iter!=jsonParamTemplatesObj.end(); ++iter) {
-                validateParamData(iter, true, QStringList()<<"param_templates", errList);
+                validateParamData(iter, true, QStringList()<<"zj_param_templates", errList);
             }
             resolveJsonParamTemplatesRecursive(jsonStructObj, jsonParamTemplatesObj, errList);
             if(errList.isEmpty()) {
-                jsonStructObj.remove("param_templates");
+                jsonStructObj.remove("zj_param_templates");
             }
         }
         else {
-            errEntry error(ERR_INVALID_PARAM_TEMPLATE, QStringLiteral("param_templates"));
+            errEntry error(ERR_INVALID_PARAM_TEMPLATE, QStringLiteral("zj_param_templates"));
             errList.push_back(error);
         }
     }
@@ -80,18 +80,18 @@ bool cZeraJsonParamsStructure::resolveJsonParamTemplatesRecursive(QJsonObject& j
     bool objectChanged = false;
     for(QJsonObject::Iterator sub=jsonStructObj.begin(); sub!=jsonStructObj.end(); sub++) {
         QString key = sub.key();
-        if(key == QStringLiteral("param_template")) {
+        if(key == QStringLiteral("zj_param_template")) {
             QString linkTo = jsonStructObj[key].toString();
             if(!linkTo.isEmpty()) {
                 QJsonValue specVal = jsonParamTemplatesObj[linkTo];
-                // param_template reference found in param_templates?
+                // zj_param_template reference found in zj_param_templates?
                 if(!specVal.isNull() && specVal.isObject()) {
                     QJsonObject spec = jsonParamTemplatesObj[linkTo].toObject();
                     for(QJsonObject::ConstIterator specEntry=spec.begin(); specEntry!=spec.end(); specEntry++) {
                         QString specEntryKey = specEntry.key();
                         if(jsonStructObj[specEntryKey].isNull()) { // specs can be overriden
                             jsonStructObj.insert(specEntryKey, specEntry.value());
-                            jsonStructObj.remove("param_template");
+                            jsonStructObj.remove("zj_param_template");
                             objectChanged = true;
                         }
                     }
@@ -106,7 +106,7 @@ bool cZeraJsonParamsStructure::resolveJsonParamTemplatesRecursive(QJsonObject& j
                 errList.push_back(error);
             }
         }
-        else if(key == QStringLiteral("param_templates")) {
+        else if(key == QStringLiteral("zj_param_templates")) {
             continue;
         }
         else if(jsonStructObj[key].isObject() && !jsonStructObj[key].isNull()) {
@@ -277,7 +277,7 @@ void cZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &j
 {
     for(QJsonObject::Iterator sub=jsonStructObj.begin(); sub!=jsonStructObj.end(); sub++) {
         QString key = sub.key();
-        if(key == QStringLiteral("params")) {
+        if(key == QStringLiteral("zj_params")) {
             if(sub.value().isObject()) {
                 QJsonObject paramsObj = sub.value().toObject();
                 for(QJsonObject::ConstIterator iter=paramsObj.begin(); iter!=paramsObj.end(); ++iter) {
@@ -301,11 +301,11 @@ void cZeraJsonParamsStructure::createDefaultJsonStateRecursive(QJsonObject &json
 {
     for(QJsonObject::ConstIterator structSubIter=jsonStructObj.begin(); structSubIter!=jsonStructObj.end(); structSubIter++) {
         QString structKey = structSubIter.key();
-        if(structKey == QStringLiteral("params")) {
+        if(structKey == QStringLiteral("zj_params")) {
             int subPathDepth = jsonStructurePathList.size();
             QJsonObject paramsToInsertLater;
             QJsonObject &paramsToInsert = subPathDepth == 0 ? jsonStateObj : paramsToInsertLater;
-            // "params" has one or more tupels (we are interested in 'default' only).
+            // "zj_params" has one or more tupels (we are interested in 'default' only).
             QJsonObject paramsObj = structSubIter.value().toObject();
             for(QJsonObject::ConstIterator paramIter=paramsObj.begin(); paramIter!=paramsObj.end(); ++paramIter) {
                 QJsonObject paramObj = paramIter.value().toObject();

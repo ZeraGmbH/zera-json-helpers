@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "invalid-property": {
             "type": "number",
             "min": 0.0,

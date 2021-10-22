@@ -1,5 +1,5 @@
 {
-    "param_templates": {
+    "zj_param_templates": {
         "param_float": {
             "type": "foo",
             "min": 0.0,
