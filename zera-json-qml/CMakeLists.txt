@@ -20,7 +20,7 @@ file(GLOB SOURCE
     ${PROJECT_SOURCE_DIR}/src/*.cpp
     )
 
-# zera-json-params
+# zera-json-qml
 ########################
 add_library(zera-json-qml SHARED
     ${HEADER}
@@ -35,7 +35,7 @@ target_include_directories(zera-json-qml
     )
 
 target_link_libraries(zera-json-qml
-    PRIVATE
+    PUBLIC
     Qt5::Core
     Qt5::Qml
     # ask linker to help us finding unresolved symbols
@@ -82,7 +82,7 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zera-json-qmlConfig.cmake"
 
 # install targets cmake-files
 install(EXPORT zera-json-qmlExport
-    FILE zera-json-paramsTargets.cmake
+    FILE zera-json-qmlTargets.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-qml
     )
 
