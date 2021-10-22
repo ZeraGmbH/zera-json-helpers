@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "number-min-type-invalid-1": {
             "type": "number",
             "min": true,

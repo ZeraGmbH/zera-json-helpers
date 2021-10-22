@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "param_from_template": {
             "type": "number",
             "min": 0.0,
@@ -9,7 +9,7 @@
          }
     },
     "nested_param": {
-        "params": {
+        "zj_params": {
             "param_from_template": {
                 "type": "number",
                 "min": 0.0,

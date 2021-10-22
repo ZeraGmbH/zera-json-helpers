@@ -1,5 +1,5 @@
 {
-    "params": {
+    "zj_params": {
         "default-out-of-limit-upper": {
             "type": "number",
             "decimals": 1,
