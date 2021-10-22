@@ -1,7 +1,7 @@
 {
     "param_templates": {
-        "template_float": {
-            "type": "float",
+        "template_number": {
+            "type": "number",
             "min": 0.0,
             "max": 10.0,
             "decimals": 3,
@@ -9,6 +9,6 @@
         }
     },
     "params": {
-        "param_from_template": { "param_template": "template_float" }
+        "param_from_template": { "param_template": "template_number" }
     }
 }

@@ -1,17 +1,11 @@
 {
     "params": {
-        "valid-float": {
-            "type": "float",
+        "valid-number": {
+            "type": "number",
             "min": 0.0,
             "max": 10.0,
             "decimals": 3,
             "default": 10.0
-        },
-        "valid-int": {
-            "type": "int",
-            "min": 0.0,
-            "max": 10.0,
-            "default": 0.0
         },
         "valid-bool": {
             "type": "bool",

@@ -1,7 +1,7 @@
 {
     "params": {
         "param_from_template": {
-            "type": "float",
+            "type": "number",
             "min": 0.0,
             "max": 10.0,
             "decimals": 3,
@@ -11,7 +11,7 @@
     "nested_param": {
         "params": {
             "param_from_template": {
-                "type": "float",
+                "type": "number",
                 "min": 0.0,
                 "max": 10.0,
                 "decimals": 3,
