@@ -133,7 +133,7 @@ file(GLOB TEST_RESOURCE_FILES
     unittest/json-test-files/*.json
     )
 
-# check for valid devinfo / display in qt-creator
+# display in qt-creator
 add_custom_target(zera-json-params-unittest-dont-forget-qrc ALL
     SOURCES ${TEST_RESOURCE_FILES}
     #COMMAND ${JSONLINT} ${TEST_RESOURCE_FILES}
