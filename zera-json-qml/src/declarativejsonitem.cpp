@@ -121,12 +121,14 @@ void DeclarativeJsonItem::savePropertyMapRecursive(DeclarativeJsonItem *qmlPropM
         else if(iter->isArray()) { // TODO?
             qWarning("savePropertyMapRecursive: JSON arrays are not supported (yet?)");
         }
-        else {
-            QVariant jsonOldVal = iter.value().toVariant();
-            QVariant qmlNewValue = (*qmlPropMap)[iter.key()];
-            if(qmlNewValue.convert(jsonOldVal.type())) {
+        else { // number or string
+            QJsonValue jsonOldVal = iter.value();
+            QJsonValue::Type oldType = jsonOldVal.type();
+            QJsonValue qmlNewValue = (*qmlPropMap)[iter.key()].toJsonValue();
+            QJsonValue::Type newType = qmlNewValue.type();
+            if(oldType == newType) {
                 if(jsonOldVal != qmlNewValue) {
-                    jsonObject[iter.key()] = qmlNewValue.toJsonValue();
+                    jsonObject[iter.key()] = qmlNewValue;
                 }
             }
             else {
