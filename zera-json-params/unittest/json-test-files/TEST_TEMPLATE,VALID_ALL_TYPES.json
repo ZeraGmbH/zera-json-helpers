@@ -4,14 +4,8 @@
             "type": "bool",
             "default": false
         },
-        "template_int": {
-            "type": "int",
-            "min": 0,
-            "max": 10,
-            "default": 5
-        },
-        "template_float": {
-            "type": "float",
+        "template_number": {
+            "type": "number",
             "min": 0.0,
             "max": 10.0,
             "decimals": 3,
@@ -33,16 +27,10 @@
             "param_from_override": { "param_template": "template_bool", "default": true }
         }
     },
-    "int_params": {
+    "number_params": {
         "params": {
-            "param_from_template": { "param_template": "template_int" },
-            "param_from_override": { "param_template": "template_int", "default": 10 }
-        }
-    },
-    "float_params": {
-        "params": {
-            "param_from_template": { "param_template": "template_float" },
-            "param_from_override": { "param_template": "template_float", "default": 10.0 }
+            "param_from_template": { "param_template": "template_number" },
+            "param_from_override": { "param_template": "template_number", "default": 10.0 }
         }
     },
     "string_params": {

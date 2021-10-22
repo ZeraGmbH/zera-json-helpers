@@ -68,7 +68,7 @@ TEST(TEST_PARAMS,DEFAULT_MISSING) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,DEFAULT_MISSING");
     cZeraJsonParamsStructure jsonParamStructure;
     cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
-    EXPECT_EQ(errListStructure.length(), 5);
+    EXPECT_EQ(errListStructure.length(), 4);
     for(auto err : errListStructure) {
         EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
     }
@@ -77,17 +77,6 @@ TEST(TEST_PARAMS,DEFAULT_MISSING) {
 // negative: bool invalid default value type
 TEST(TEST_PARAMS,BOOL_INVALID_TYPE_DEFAULT) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,BOOL_INVALID_TYPE_DEFAULT");
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
-    EXPECT_EQ(errListStructure.length(), 4);
-    for(auto err : errListStructure) {
-        EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
-    }
-}
-
-// negative: int invalid default value type
-TEST(TEST_PARAMS,INT_INVALID_TYPE_DEFAULT) {
-    QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,INT_INVALID_TYPE_DEFAULT");
     cZeraJsonParamsStructure jsonParamStructure;
     cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
     EXPECT_EQ(errListStructure.length(), 4);
@@ -112,7 +101,7 @@ TEST(TEST_PARAMS,MIN_MAX_MISSING) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,MIN_MAX_MISSING");
     cZeraJsonParamsStructure jsonParamStructure;
     cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
-    EXPECT_EQ(errListStructure.length(), 4);
+    EXPECT_EQ(errListStructure.length(), 2);
     for(auto err : errListStructure) {
         EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
     }
@@ -123,7 +112,7 @@ TEST(TEST_PARAMS,MIN_MAX_INVALID) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,MIN_MAX_INVALID");
     cZeraJsonParamsStructure jsonParamStructure;
     cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
-    EXPECT_EQ(errListStructure.length(), 16);
+    EXPECT_EQ(errListStructure.length(), 8);
     for(auto err : errListStructure) {
         EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
     }
@@ -134,7 +123,7 @@ TEST(TEST_PARAMS,MIN_MAX_DEFAULT_LIMITS) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_PARAMS,MIN_MAX_DEFAULT_LIMITS");
     cZeraJsonParamsStructure jsonParamStructure;
     cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
-    EXPECT_EQ(errListStructure.length(), 6+2); // min larger max throw default > max too
+    EXPECT_EQ(errListStructure.length(), 3+1); // min larger max throws default > max too
     for(auto err : errListStructure) {
         EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
     }

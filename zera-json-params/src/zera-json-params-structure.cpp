@@ -124,8 +124,7 @@ bool cZeraJsonParamsStructure::resolveJsonParamTemplatesRecursive(QJsonObject& j
 QSet<QString> cZeraJsonParamsStructure::m_svalidParamEntryKeys = QSet<QString>() << "type" << "min" << "max" << "decimals" << "default" << "list";
 QHash<QString, QStringList> cZeraJsonParamsStructure::m_svalidParamTypes {
     { "bool",  QStringList() << "default"},
-    { "int",   QStringList() << "min" << "max" << "default"},
-    { "float", QStringList() << "min" << "max" << "decimals" << "default"},
+    { "number", QStringList() << "min" << "max" << "decimals" << "default"},
     { "string", QStringList() << "default"},
     { "oneof-list", QStringList() << "list" << "default"},
 };
@@ -200,7 +199,7 @@ void cZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter
                     errList.push_back(error);
                 }
             }
-            else if(type == "int" || type == "float") {
+            else if(type == "number") {
                 if(!paramObject["default"].isDouble()) {
                     errEntry error(inTemplate ? ERR_INVALID_PARAM_TEMPLATE_DEFINITION : ERR_INVALID_PARAM_DEFINITION,
                                    treePosPrint + ".default not a number");
@@ -214,6 +213,7 @@ void cZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter
                     errList.push_back(error);
                 }
             }
+            // TODO oneof-list
         }
         // max > min / default out of limit - classic late night bugs introduced
         if(paramObject.contains("max") && paramObject.contains("min")) {

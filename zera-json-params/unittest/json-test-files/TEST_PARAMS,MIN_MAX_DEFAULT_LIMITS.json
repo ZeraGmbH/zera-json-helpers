@@ -1,39 +1,21 @@
 {
     "params": {
-        "int-default-out-of-limit-upper": {
-            "type": "int",
-            "min": 0,
-            "max": 10,
-            "default": 11
-        },
-        "int-default-out-of-limit-lower": {
-            "type": "int",
-            "min": 0,
-            "max": 10,
-            "default": -1
-        },
-        "int-min-larger-max": {
-            "type": "int",
-            "min": 10,
-            "max": 0,
-            "default": 0
-        },
-        "float-default-out-of-limit-upper": {
-            "type": "float",
+        "default-out-of-limit-upper": {
+            "type": "number",
             "decimals": 1,
             "min": 0.0,
             "max": 10.0,
             "default": 11.0
         },
-        "float-default-out-of-limit-lower": {
-            "type": "float",
+        "default-out-of-limit-lower": {
+            "type": "number",
             "decimals": 1,
             "min": 0.0,
             "max": 10.0,
             "default": -1.0
         },
-        "float-min-larger-max": {
-            "type": "float",
+        "min-larger-max": {
+            "type": "number",
             "decimals": 1,
             "min": 10.0,
             "max": 0.0,

@@ -153,7 +153,6 @@ target_link_libraries(zera-json-params-unittest
     gtest
     gtest_main
     Qt5::Core
-    # lin to test
     zera-json-params
 )
 
