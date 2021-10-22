@@ -97,6 +97,7 @@ install(
 find_package(GTest)
 if(${GTest_FOUND})
     message(STATUS "building zera-json-qml-unittest")
+    enable_testing()
     add_executable(zera-json-qml-unittest
         tests/unittest-cpp.cpp
         tests/resources.qrc
