@@ -67,6 +67,12 @@ void cZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonStat
     }
 }
 
+cZeraJsonParamsState::errEntry::errEntry(cZeraJsonParamsState::errorTypes errType, QString strInfo) :
+    m_errType(errType),
+    m_strInfo(strInfo)
+{
+}
+
 QString cZeraJsonParamsState::errEntry::strID()
 {
     QString str;
