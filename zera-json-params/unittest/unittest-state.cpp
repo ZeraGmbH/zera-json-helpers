@@ -68,3 +68,31 @@ TEST(TEST_STATE,VALIDATE_DEFAULT) {
         EXPECT_EQ(paramErrList.count(), 0) << "Expected default params valid";
     }
 }
+
+TEST(TEST_STATE,VALIDATE_TYPE_ERRORS) {
+    QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES");
+    cZeraJsonParamsStructure jsonParamStructure;
+    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
+    EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
+    if(errListStructure.isEmpty()) {
+        cZeraJsonParamsState jsonParamState;
+        jsonParamState.setStructure(jsonParamStructure.jsonStructure());
+        QJsonObject jsonStateWrongTypes = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALIDATE_TYPE_ERRORS");
+        cZeraJsonParamsState::ErrList paramErrList = jsonParamState.validateJsonState(jsonStateWrongTypes);
+        EXPECT_EQ(paramErrList.count(), 6) << "Expected all params invalid for type error";
+    }
+}
+
+TEST(TEST_STATE,VALIDATE_LIMIT_ERRORS) {
+    QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES");
+    cZeraJsonParamsStructure jsonParamStructure;
+    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
+    EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
+    if(errListStructure.isEmpty()) {
+        cZeraJsonParamsState jsonParamState;
+        jsonParamState.setStructure(jsonParamStructure.jsonStructure());
+        QJsonObject jsonStateWrongTypes = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALIDATE_LIMIT_ERRORS");
+        cZeraJsonParamsState::ErrList paramErrList = jsonParamState.validateJsonState(jsonStateWrongTypes);
+        EXPECT_EQ(paramErrList.count(), 3) << "Expected all params invalid for limits";
+    }
+}
