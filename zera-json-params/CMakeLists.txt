@@ -120,13 +120,13 @@ install(TARGETS zera-json-params-cli
 ####################
 if(${GTest_FOUND})
 message(STATUS "building with unittest")
+file(GLOB UNITTEST_SOURCE
+    ${PROJECT_SOURCE_DIR}/unittest/*.cpp
+    )
 add_executable(zera-json-params-unittest
     unittest/resources.qrc
-    unittest/unittest-param.cpp
-    unittest/unittest-state.cpp
-    unittest/unittest-template.cpp
-    unittest/zerajsonhelper.cpp
     unittest/zerajsonhelper.h
+    ${UNITTEST_SOURCE}
     )
 
 
