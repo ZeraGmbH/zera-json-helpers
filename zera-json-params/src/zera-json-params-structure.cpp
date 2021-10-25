@@ -293,10 +293,13 @@ QString cZeraJsonParamsStructure::errEntry::strID()
     switch(m_errType) {
     case ERR_INVALID_PARAM_TEMPLATE:
         str = "Invalid parameter template";
+        break;
     case ERR_INVALID_PARAM_TEMPLATE_DEFINITION:
         str = "Invalid parameter template defintion";
+        break;
     case ERR_INVALID_PARAM_DEFINITION:
         str = "Invalid parameter template defintion";
+        break;
     }
     return str;
 }

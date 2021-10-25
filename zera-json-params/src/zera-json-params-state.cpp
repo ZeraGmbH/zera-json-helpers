@@ -73,10 +73,13 @@ QString cZeraJsonParamsState::errEntry::strID()
     switch(m_errType) {
     case ERR_INVALID_STRUCTURE:
         str = "Invalid parameter parameter structure";
+        break;
     case ERR_UNKNOWN_ENTRY:
         str = "Parameter not in structure";
+        break;
     case ERR_NOT_A_PARAM:
         str = "Not a parameter";
+        break;
     }
     return str;
 }
