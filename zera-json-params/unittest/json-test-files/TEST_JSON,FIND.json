@@ -1,0 +1,12 @@
+{
+    "bool1": true,
+    "number1": 1.0,
+    "string1": "foo",
+    "array1": ["foo", "bar"],
+    "object1": {
+        "bool2": true,
+        "number2": 1.0,
+        "string2": "foo",
+        "array2": ["foo", "bar"]
+    }
+}

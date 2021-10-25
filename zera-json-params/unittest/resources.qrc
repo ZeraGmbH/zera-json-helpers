@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
+        <file>json-test-files/TEST_JSON,FIND.json</file>
+    </qresource>
+    <qresource prefix="/">
         <file>json-test-files/TEST_TEMPLATE,VALID.json</file>
         <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT.json</file>
         <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT_RESOLVE_EXPECTED.json</file>
