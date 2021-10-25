@@ -1,5 +1,7 @@
 #include "zera-json-params-state.h"
 #include "zera-json-merge.h"
+#include "zera-json-find.h"
+#include <QJsonArray>
 
 cZeraJsonParamsState::cZeraJsonParamsState()
 {
@@ -31,7 +33,7 @@ cZeraJsonParamsState::ErrList cZeraJsonParamsState::validateJsonState(const QJso
         errList.push_back(error);
     }
     if(errList.isEmpty()) {
-        // TODO
+        validateJsonStateRecursive(jsonState, QStringList(), errList);
     }
     return errList;
 }
@@ -77,6 +79,89 @@ void cZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonStat
     }
 }
 
+void cZeraJsonParamsState::validateJsonStateRecursive(const QJsonObject &jsonStateObj, QStringList jsonStatePathList, cZeraJsonParamsState::ErrList &errList)
+{
+    for(QJsonObject::ConstIterator sub=jsonStateObj.begin(); sub!=jsonStateObj.end(); sub++) {
+        QString key = sub.key();
+        QJsonValue jsonValueInStructure = cJSONFind::findJson(m_jsonStructure, jsonStatePathList);
+        if(jsonValueInStructure.isNull()) {
+            errEntry error(ERR_UNKNOWN_KEY, jsonStatePathList.join("."));
+            errList.append(error);
+        }
+        else if(sub.value().isObject()) {
+            jsonStatePathList.append(key);
+            validateJsonStateRecursive(sub.value().toObject(), jsonStatePathList, errList);
+            jsonStatePathList.pop_back();
+        }
+        else if(sub.value().isArray()) {
+            jsonStatePathList.append(key);
+            errEntry error(ERR_ARRAY_NOT_SUPPORTED, jsonStatePathList.join("."));
+            errList.append(error);
+            jsonStatePathList.pop_back();
+        }
+        else { // bool / number / string
+            QStringList jsonStructurePathList = jsonStatePathList;
+            jsonStructurePathList.append("zj_params");
+            jsonStructurePathList.append(key);
+            QJsonValue jsonParamInStructure = cJSONFind::findJson(m_jsonStructure, jsonStructurePathList);
+            jsonStatePathList.append(key);
+            if(jsonParamInStructure.isNull()) {
+                errEntry error(ERR_UNKNOWN_KEY, jsonStatePathList.join("."));
+                errList.append(error);
+            }
+            else {
+                validateJsonStateValue(sub.value(), jsonStatePathList, jsonParamInStructure, errList);
+            }
+            jsonStatePathList.pop_back();
+        }
+    }
+}
+
+void cZeraJsonParamsState::validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, cZeraJsonParamsState::ErrList &errList)
+{
+    QJsonObject jsonValueStruct = jsonParamValueStructure.toObject();
+    QString type = jsonValueStruct["type"].toString();
+    if(type == "bool") {
+        if(!jsonStateValue.isBool()) {
+            errEntry error(ERR_PARAM_TYPE, jsonStatePathList.join("."));
+            errList.append(error);
+        }
+    }
+    else if(type == "number") {
+        if(!jsonStateValue.isDouble()) {
+            errEntry error(ERR_PARAM_TYPE, jsonStatePathList.join("."));
+            errList.append(error);
+        }
+        else {
+            double paramVal = jsonStateValue.toDouble();
+            double min = jsonValueStruct["min"].toDouble();
+            double max = jsonValueStruct["max"].toDouble();
+            if(paramVal > max || paramVal < min) {
+                errEntry error(ERR_PARAM_LIMIT, jsonStatePathList.join("."));
+                errList.append(error);
+            }
+        }
+    }
+    else if(type == "string") {
+        if(!jsonStateValue.isString()) {
+            errEntry error(ERR_PARAM_TYPE, jsonStatePathList.join("."));
+            errList.append(error);
+        }
+    }
+    else if(type == "oneof-list") {
+        // Maybe we add a sub type later - TODO?
+        QJsonArray listValidEntries = jsonValueStruct["list"].toArray();
+        if(!listValidEntries.contains(jsonStateValue)) {
+            errEntry error(ERR_PARAM_LIMIT, jsonStatePathList.join("."));
+            errList.append(error);
+        }
+    }
+    else {
+        errEntry error(ERR_INVALID_STRUCTURE_FATAL, jsonStatePathList.join("."));
+        errList.append(error);
+    }
+}
+
 cZeraJsonParamsState::errEntry::errEntry(cZeraJsonParamsState::errorTypes errType, QString strInfo) :
     m_errType(errType),
     m_strInfo(strInfo)
@@ -88,16 +173,25 @@ QString cZeraJsonParamsState::errEntry::strID()
     QString str;
     switch(m_errType) {
     case ERR_INVALID_STRUCTURE:
-        str = "Invalid parameter parameter structure";
+        str = "No parameter parameter structure";
         break;
     case ERR_EMPTY_STATE:
         str = "State is empty";
         break;
-    case ERR_UNKNOWN_ENTRY:
-        str = "Parameter not in structure";
+    case ERR_UNKNOWN_KEY:
+        str = "Key not in structure";
         break;
-    case ERR_NOT_A_PARAM:
-        str = "Not a parameter";
+    case ERR_ARRAY_NOT_SUPPORTED:
+        str = "Arrays are not supported as params";
+        break;
+    case ERR_PARAM_TYPE:
+        str = "Param has data type";
+        break;
+    case ERR_PARAM_LIMIT:
+        str = "Param is out of limits";
+        break;
+    case ERR_INVALID_STRUCTURE_FATAL:
+        str = "Fatal: Invalid parameter parameter structure";
         break;
     }
     return str;
