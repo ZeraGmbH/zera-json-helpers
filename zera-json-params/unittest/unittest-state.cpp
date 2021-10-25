@@ -16,7 +16,7 @@ TEST(TEST_STATE,VALID_ALL_TYPES) {
         jsonParamState.setStructure(jsonParamStructure.jsonStructure());
         QJsonObject jsonParamDefault = jsonParamState.createDefaultJsonState();
         QJsonObject jsonParamDefaultExpected = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES_DEFAULT");
-        EXPECT_EQ(jsonParamDefaultExpected, jsonParamDefaultExpected) << "Expected default params do not match";
+        EXPECT_EQ(jsonParamDefault, jsonParamDefaultExpected) << "Expected default params do not match";
     }
 }
 

@@ -1,13 +1,12 @@
 {
+    "param_from_template": false,
+    "param_from_override": true,
+
     "bool_params": {
         "param_from_template": false,
         "param_from_override": true
     },
-    "int_params": {
-        "param_from_template": 5,
-        "param_from_override": 10
-    },
-    "float_params": {
+    "number_params": {
         "param_from_template": 5.0,
         "param_from_override": 10.0
     },

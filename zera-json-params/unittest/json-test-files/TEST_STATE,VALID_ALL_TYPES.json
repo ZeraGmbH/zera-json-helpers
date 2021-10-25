@@ -21,6 +21,11 @@
             "default": "foo"
         }
     },
+
+    "zj_params": {
+        "param_from_template": { "zj_param_template": "template_bool" },
+        "param_from_override": { "zj_param_template": "template_bool", "default": true }
+    },
     "bool_params": {
         "zj_params": {
             "param_from_template": { "zj_param_template": "template_bool" },
