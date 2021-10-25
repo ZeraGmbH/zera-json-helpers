@@ -2,6 +2,7 @@
 #define CZERAJSONPARAMSSTATE_H
 
 #include <QJsonObject>
+#include <QStringList>
 
 class cZeraJsonParamsState
 {
