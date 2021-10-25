@@ -11,6 +11,7 @@ public:
 
     enum errorTypes {
         ERR_INVALID_STRUCTURE = 0,
+        ERR_EMPTY_STATE,
         ERR_UNKNOWN_ENTRY,
         ERR_NOT_A_PARAM,
     };
