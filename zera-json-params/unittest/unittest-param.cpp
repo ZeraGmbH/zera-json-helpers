@@ -1,6 +1,5 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
-#include <QJsonDocument>
 #include "zerajsonhelper.h"
 
 #include "zera-json-params-structure.h"

@@ -123,6 +123,7 @@ message(STATUS "building with unittest")
 add_executable(zera-json-params-unittest
     unittest/resources.qrc
     unittest/unittest-param.cpp
+    unittest/unittest-state.cpp
     unittest/unittest-template.cpp
     unittest/zerajsonhelper.cpp
     unittest/zerajsonhelper.h
