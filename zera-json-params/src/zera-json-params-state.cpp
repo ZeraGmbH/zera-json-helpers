@@ -22,7 +22,17 @@ QJsonObject cZeraJsonParamsState::createDefaultJsonState()
 cZeraJsonParamsState::ErrList cZeraJsonParamsState::validateJsonState(const QJsonObject &jsonState)
 {
     ErrList errList;
-    // TODO
+    if(m_jsonStructure.isEmpty()) {
+        errEntry error(ERR_INVALID_STRUCTURE, "");
+        errList.push_back(error);
+    }
+    if(jsonState.isEmpty()) {
+        errEntry error(ERR_EMPTY_STATE, "");
+        errList.push_back(error);
+    }
+    if(errList.isEmpty()) {
+        // TODO
+    }
     return errList;
 }
 
@@ -79,6 +89,9 @@ QString cZeraJsonParamsState::errEntry::strID()
     switch(m_errType) {
     case ERR_INVALID_STRUCTURE:
         str = "Invalid parameter parameter structure";
+        break;
+    case ERR_EMPTY_STATE:
+        str = "State is empty";
         break;
     case ERR_UNKNOWN_ENTRY:
         str = "Parameter not in structure";
