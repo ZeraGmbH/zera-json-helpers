@@ -12,8 +12,13 @@ public:
     enum errorTypes {
         ERR_INVALID_STRUCTURE = 0,
         ERR_EMPTY_STATE,
-        ERR_UNKNOWN_ENTRY,
-        ERR_NOT_A_PARAM,
+        ERR_UNKNOWN_KEY,
+        ERR_ARRAY_NOT_SUPPORTED,
+
+        ERR_PARAM_TYPE,
+        ERR_PARAM_LIMIT,
+
+        ERR_INVALID_STRUCTURE_FATAL // This must never happen: we test structures
     };
     struct errEntry {
         errEntry(enum errorTypes errType, QString strInfo);
@@ -30,6 +35,8 @@ public:
 
 private:
     void createDefaultJsonStateRecursive(QJsonObject& jsonStateObj, QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
+    void validateJsonStateRecursive(const QJsonObject &jsonStateObj, QStringList jsonStatePathList, ErrList &errList);
+    void validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, ErrList &errList);
 
     QJsonObject m_jsonStructure;
 };
