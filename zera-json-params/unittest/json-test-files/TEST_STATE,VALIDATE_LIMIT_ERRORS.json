@@ -1,0 +1,9 @@
+{
+    "number_params": {
+        "param_from_template": -1.0,
+        "param_from_override": 11.0
+    },
+    "oneof-list_params": {
+        "param_from_template": "honk"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "bool_params": {
+        "param_from_template": 1.0,
+        "param_from_override": "foo"
+    },
+    "number_params": {
+        "param_from_template": true,
+        "param_from_override": "foo"
+    },
+    "string_params": {
+        "param_from_template": true,
+        "param_from_override": 1.0
+    }
+}

@@ -29,5 +29,7 @@
     <qresource prefix="/">
         <file>json-test-files/TEST_STATE,VALID_ALL_TYPES.json</file>
         <file>json-test-files/TEST_STATE,VALID_ALL_TYPES_DEFAULT.json</file>
+        <file>json-test-files/TEST_STATE,VALIDATE_TYPE_ERRORS.json</file>
+        <file>json-test-files/TEST_STATE,VALIDATE_LIMIT_ERRORS.json</file>
     </qresource>
 </RCC>
