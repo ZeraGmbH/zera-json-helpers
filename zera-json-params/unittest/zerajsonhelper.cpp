@@ -22,7 +22,7 @@ QJsonObject ZeraJsonHelper::loadFromQrc(const QString strTestName)
 bool ZeraJsonHelper::checkJsonObject(QJsonObject p_data)
 {
     bool retVal=false;
-    if(p_data.empty()){
+    if(p_data.isEmpty()){
         retVal=true;
         std::cerr << "The Provided json object is empty. Your test might fail therefore" << std::endl;
     }

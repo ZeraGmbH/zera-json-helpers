@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include "zera-json-params-structure.h"
+#include "zera-json-params-state.h"
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +41,8 @@ int main(int argc, char *argv[])
 
             if(errListStructure.isEmpty()) { // valid structure is mandatory for state
                 QJsonObject jsonStateDataLoaded;
+                cZeraJsonParamsState jsonParamState;
+                jsonParamState.setStructure(jsonParamStructure.jsonStructure());
                 if(!jsonStateInputFileName.isEmpty()) {
                     QFile jsonStateFile(jsonStateInputFileName);
                     ok = jsonStateFile.open(QIODevice::Unbuffered | QIODevice::ReadOnly);
@@ -47,12 +50,12 @@ int main(int argc, char *argv[])
                         QByteArray jsonStateData = jsonStateFile.readAll();
                         jsonStateFile.close();
                         jsonStateDataLoaded = QJsonDocument::fromJson(jsonStateData).object();
-                        errListStructure = jsonParamStructure.validateJsonState(jsonStateDataLoaded);
-                        if(!errListStructure.isEmpty()) {
+                        cZeraJsonParamsState::ErrList errListState = jsonParamState.validateJsonState(jsonStateDataLoaded);
+                        if(!errListState.isEmpty()) {
                             ok = false;
                             qWarning("Errors occured validating parameter file %s", qPrintable(jsonStateInputFileName));
-                            while(!errListStructure.isEmpty()) {
-                                cZeraJsonParamsStructure::errEntry err = errListStructure.takeFirst();
+                            while(!errListState.isEmpty()) {
+                                cZeraJsonParamsState::errEntry err = errListState.takeFirst();
                                 qWarning("%s: %s", qPrintable(err.strID()), qPrintable(err.m_strInfo));
                             }
                         }
@@ -64,7 +67,7 @@ int main(int argc, char *argv[])
                 if(ok && !jsonStateOutputFileName.isEmpty()) {
                     if(jsonStateDataLoaded.isEmpty()) {
                         qInfo("Loading default parameter state");
-                        jsonStateDataLoaded = jsonParamStructure.createDefaultJsonState();
+                        jsonStateDataLoaded = jsonParamState.createDefaultJsonState();
                     }
                 }
             }
