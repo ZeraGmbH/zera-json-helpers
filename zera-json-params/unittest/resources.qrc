@@ -32,4 +32,7 @@
         <file>json-test-files/TEST_STATE,VALIDATE_TYPE_ERRORS.json</file>
         <file>json-test-files/TEST_STATE,VALIDATE_LIMIT_ERRORS.json</file>
     </qresource>
+    <qresource prefix="/">
+        <file>json-test-files/TEST_JSON_LOAD.json</file>
+    </qresource>
 </RCC>
