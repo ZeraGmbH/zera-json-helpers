@@ -19,6 +19,8 @@ public:
     void setJsonParamStructure(const QJsonObject& jsonParamStructure);
     QJsonObject getJsonParamStructure() const;
 private:
+    bool checkStateValidity(const QJsonObject& stateObject);
+
     QString m_stateFilePath;
     QJsonObject m_jsonParamStructure;
 };
