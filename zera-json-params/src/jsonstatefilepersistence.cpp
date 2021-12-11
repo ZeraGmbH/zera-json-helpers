@@ -5,18 +5,16 @@
 
 JsonStateFilePersistence::JsonStateFilePersistence()
 {
-
 }
 
 void JsonStateFilePersistence::setStateFilePath(const QString& path)
 {
-    m_stateFilePath=path;
+    m_stateFilePath = path;
 }
-
 
 void JsonStateFilePersistence::setJsonParamStructure(const QJsonObject& jsonParamStructure)
 {
-    m_jsonParamStructure=jsonParamStructure;
+    m_jsonParamStructure = jsonParamStructure;
 }
 
 QJsonObject JsonStateFilePersistence::getJsonParamStructure() const
@@ -26,32 +24,27 @@ QJsonObject JsonStateFilePersistence::getJsonParamStructure() const
 
 bool JsonStateFilePersistence::checkStateValidity(const QJsonObject &stateObject)
 {
-    bool isValid=false;
     cZeraJsonParamsState jsonParamsState;
     jsonParamsState.setStructure(m_jsonParamStructure);
     cZeraJsonParamsState::ErrList errList = jsonParamsState.validateJsonState(stateObject);
-    if(errList.isEmpty()){
-        isValid=true;
-    }
-    return isValid;
+    return errList.isEmpty();
 }
 
 QJsonObject JsonStateFilePersistence::loadState()
 {
     QJsonObject paramState;
     cZeraJsonParamsState jsonParamsState;
-
-    try{
+    try {
         jsonParamsState.setStructure(m_jsonParamStructure);
         QJsonObject stateObject = cJsonFileLoader::loadJsonFile(m_stateFilePath);
-        bool isValidState=checkStateValidity(stateObject);
+        bool isValidState = checkStateValidity(stateObject);
         if(!isValidState) {
-            throw std::runtime_error("invalid struct");
+            throw std::runtime_error("invalid state");
         }
         paramState = stateObject;
-
-    }catch(std::runtime_error &e){
-        paramState= jsonParamsState.createDefaultJsonState();
+    }
+    catch(std::runtime_error &e){
+        paramState = jsonParamsState.createDefaultJsonState();
         saveState(paramState);
     }
     return paramState;
@@ -59,8 +52,8 @@ QJsonObject JsonStateFilePersistence::loadState()
 
 void JsonStateFilePersistence::saveState(QJsonObject stateObject)
 {
-    bool isValidState=checkStateValidity(stateObject);
+    bool isValidState = checkStateValidity(stateObject);
     if(isValidState){
-        cJsonFileLoader::storeJsonFile(m_stateFilePath,stateObject);
+        cJsonFileLoader::storeJsonFile(m_stateFilePath, stateObject);
     }
 }
