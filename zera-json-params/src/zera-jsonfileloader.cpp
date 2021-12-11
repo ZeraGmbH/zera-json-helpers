@@ -16,13 +16,13 @@ QJsonObject cJsonFileLoader::loadJsonFile(const QString fileName)
 
 bool cJsonFileLoader::storeJsonFile(const QString fileName, const QJsonObject &object)
 {
-         bool success=false;
-         QFile deviceStateFile(fileName);
-         if(deviceStateFile.open(QIODevice::WriteOnly)) {
-             QJsonDocument doc(object);
-             deviceStateFile.write(doc.toJson(QJsonDocument::Indented));
-             deviceStateFile.close();
-             success=true;
-         }
-         return success;
+    bool success = false;
+    QFile deviceStateFile(fileName);
+    if(deviceStateFile.open(QIODevice::WriteOnly)) {
+        QJsonDocument doc(object);
+        deviceStateFile.write(doc.toJson(QJsonDocument::Indented));
+        deviceStateFile.close();
+        success = true;
+    }
+    return success;
 }
