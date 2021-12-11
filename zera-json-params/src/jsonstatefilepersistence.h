@@ -11,12 +11,14 @@ class JsonStateFilePersistence
 {
 public:
     JsonStateFilePersistence();
+    void setStateFilePath(const QString& path);
+    void setJsonParamStructure(const QJsonObject& jsonParamStructure);
+
     QJsonObject loadState();
     void saveState(QJsonObject stateObject);
 
-    void setStateFilePath(const QString& path);
-    void setJsonParamStructure(const QJsonObject& jsonParamStructure);
     QJsonObject getJsonParamStructure();
+
 private:
     bool checkStateValidity(const QJsonObject& stateObject);
 
