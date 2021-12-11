@@ -22,7 +22,7 @@ TEST(TEST_JSON_PERSISTENCE, SAVE_INVALID_STATE) {
 
     QJsonObject invalidState;
     invalidState.insert("invalid_foo", "foo");
-    persistentStateHelper.saveState(invalidState);
+    EXPECT_FALSE(persistentStateHelper.saveState(invalidState));
     EXPECT_FALSE(QFile::exists(fileName));
 }
 
@@ -44,7 +44,7 @@ TEST(TEST_JSON_PERSISTENCE, SAVE_VALID_STATE) {
     persistentStateHelper.setJsonParamStructure(stateStruct);
     QJsonObject stateToWrite;
     stateToWrite["foo"] = 5;
-    persistentStateHelper.saveState(stateToWrite);
+    EXPECT_TRUE(persistentStateHelper.saveState(stateToWrite));
 
     QJsonObject state = cJsonFileLoader::loadJsonFile(file.fileName());
     EXPECT_EQ(state, stateToWrite);
