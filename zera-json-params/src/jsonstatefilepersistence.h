@@ -17,7 +17,7 @@ public:
 
     void setStateFilePath(const QString& path);
     void setJsonParamStructure(const QJsonObject& jsonParamStructure);
-    QJsonObject getJsonParamStructure() const;
+    QJsonObject getJsonParamStructure();
 private:
     bool checkStateValidity(const QJsonObject& stateObject);
 

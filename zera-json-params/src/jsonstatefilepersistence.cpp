@@ -17,7 +17,7 @@ void JsonStateFilePersistence::setJsonParamStructure(const QJsonObject& jsonPara
     m_jsonParamStructure = jsonParamStructure;
 }
 
-QJsonObject JsonStateFilePersistence::getJsonParamStructure() const
+QJsonObject JsonStateFilePersistence::getJsonParamStructure()
 {
     return m_jsonParamStructure;
 }
