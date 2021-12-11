@@ -3,9 +3,6 @@
 #include "zera-jsonfileloader.h"
 #include "zera-json-params-state.h"
 
-#include <QFile>
-#include <QJsonDocument>
-
 JsonStateFilePersistence::JsonStateFilePersistence()
 {
 
