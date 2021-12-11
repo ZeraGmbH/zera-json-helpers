@@ -134,10 +134,19 @@ file(GLOB TEST_RESOURCE_FILES
     unittest/json-test-files/*.json
     )
 
+# Note 1: In OE we do not (yet) have jsonlint-php so it must be optional
+# Note 2: In case we make COMMAND in target below conditional on JSONLINT,
+#         qt-creator does not display source-capabilities. That's what the
+#         'echo' dance is for
+find_program (JSONLINT NAMES jsonlint-php echo)
+if(${JSONLINT} MATCHES ".*echo.*")
+    message(WARNING "Program jsonlint-php not found. On Fedora install php-jsonlint")
+endif()
+
 # display in qt-creator
 add_custom_target(zera-json-params-unittest-dont-forget-qrc ALL
     SOURCES ${TEST_RESOURCE_FILES}
-    #COMMAND ${JSONLINT} ${TEST_RESOURCE_FILES}
+    COMMAND ${JSONLINT} ${TEST_RESOURCE_FILES}
     )
 
 # check if all json test files made it into resources.qrc
