@@ -27,53 +27,53 @@ TEST(TEST_JSON_PERSISTENCE, SAVE_INVALID_STATE) {
 }
 
 TEST(TEST_JSON_PERSISTENCE, SAVE_VALID_STATE) {
-    JsonStateFilePersistence fileLoader;
+    JsonStateFilePersistence persistentStateHelper;
     QTemporaryFile file;
     file.open();
 
     cZeraJsonParamsState defaultStateGenerator;
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
     defaultStateGenerator.setStructure(stateStruct);
-    QJsonObject correctStateDefault=defaultStateGenerator.createDefaultJsonState();
+
+    QJsonObject correctStateDefault = defaultStateGenerator.createDefaultJsonState();
 
     file.write(QJsonDocument(correctStateDefault).toJson());
     file.flush();
 
-    fileLoader.setStateFilePath(file.fileName());
-    fileLoader.setJsonParamStructure(stateStruct);
+    persistentStateHelper.setStateFilePath(file.fileName());
+    persistentStateHelper.setJsonParamStructure(stateStruct);
     QJsonObject stateToWrite;
-    stateToWrite["foo"]=5;
-    fileLoader.saveState(stateToWrite);
+    stateToWrite["foo"] = 5;
+    persistentStateHelper.saveState(stateToWrite);
 
     QJsonObject state = cJsonFileLoader::loadJsonFile(file.fileName());
-
-    EXPECT_EQ(state,stateToWrite);
+    EXPECT_EQ(state, stateToWrite);
 
 }
 
 TEST(TEST_JSON_PERSISTENCE, LOAD_INVALID_FILE) {
-    JsonStateFilePersistence fileLoader;
-    fileLoader.setStateFilePath(":/json-test-files/TEST_PERSISTENCE,LOAD_INVALID_FILE.json");
+    JsonStateFilePersistence persistentStateHelper;
+    persistentStateHelper.setStateFilePath(":/json-test-files/TEST_PERSISTENCE,LOAD_INVALID_FILE.json");
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
-    fileLoader.setJsonParamStructure(stateStruct);
+    persistentStateHelper.setJsonParamStructure(stateStruct);
 
     cZeraJsonParamsState defaultStateGenerator;
     defaultStateGenerator.setStructure(stateStruct);
 
-    QJsonObject persistentState=fileLoader.loadState();
+    QJsonObject jsonState = persistentStateHelper.loadState();
 
-    QJsonObject correctStateDefault=defaultStateGenerator.createDefaultJsonState();
-    EXPECT_EQ(persistentState,correctStateDefault);
+    QJsonObject correctStateDefault = defaultStateGenerator.createDefaultJsonState();
+    EXPECT_EQ(jsonState, correctStateDefault);
 }
 
 TEST(TEST_JSON_PERSISTENCE, LOAD_NOTEXIST_FILE) {
-    JsonStateFilePersistence fileLoader;
+    JsonStateFilePersistence persistentStateHelper;
     QTemporaryFile file;
     file.open();
-    fileLoader.setStateFilePath(file.fileName());
+    persistentStateHelper.setStateFilePath(file.fileName());
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
     QJsonObject state = cJsonFileLoader::loadJsonFile(file.fileName());
-    fileLoader.setJsonParamStructure(stateStruct);
+    persistentStateHelper.setJsonParamStructure(stateStruct);
 
     cZeraJsonParamsState defaultStateGenerator;
     defaultStateGenerator.setStructure(stateStruct);
@@ -81,19 +81,18 @@ TEST(TEST_JSON_PERSISTENCE, LOAD_NOTEXIST_FILE) {
     QJsonObject correctStateDefault=defaultStateGenerator.createDefaultJsonState();
 
     EXPECT_NE(state,correctStateDefault);
-    fileLoader.loadState();
+    persistentStateHelper.loadState();
     state = cJsonFileLoader::loadJsonFile(file.fileName());
     EXPECT_EQ(state,correctStateDefault);
 }
 
 TEST(TEST_JSON_PERSISTENCE, LOAD_VALID_FILE) {
-    JsonStateFilePersistence fileLoader;
-    fileLoader.setStateFilePath(":/json-test-files/TEST_PERSISTENCE,LOAD_VALID_FILE.json");
+    JsonStateFilePersistence persistentStateHelper;
+    persistentStateHelper.setStateFilePath(":/json-test-files/TEST_PERSISTENCE,LOAD_VALID_FILE.json");
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
-    fileLoader.setJsonParamStructure(stateStruct);
+    persistentStateHelper.setJsonParamStructure(stateStruct);
 
-    QJsonObject persistentState=fileLoader.loadState();
-
-    EXPECT_EQ(persistentState["foo"],5);
+    QJsonObject jsonState = persistentStateHelper.loadState();
+    EXPECT_EQ(jsonState["foo"], 5);
 }
 
