@@ -15,7 +15,7 @@ public:
     void setJsonParamStructure(const QJsonObject& jsonParamStructure);
 
     QJsonObject loadState();
-    void saveState(QJsonObject stateObject);
+    bool saveState(QJsonObject stateObject);
 
     QJsonObject getJsonParamStructure();
 

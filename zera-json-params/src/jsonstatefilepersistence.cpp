@@ -50,10 +50,11 @@ QJsonObject JsonStateFilePersistence::loadState()
     return paramState;
 }
 
-void JsonStateFilePersistence::saveState(QJsonObject stateObject)
+bool JsonStateFilePersistence::saveState(QJsonObject stateObject)
 {
-    bool isValidState = checkStateValidity(stateObject);
-    if(isValidState){
-        cJsonFileLoader::storeJsonFile(m_stateFilePath, stateObject);
+    bool wasStored = false;
+    if(checkStateValidity(stateObject)){
+        wasStored = cJsonFileLoader::storeJsonFile(m_stateFilePath, stateObject);
     }
+    return wasStored;
 }
