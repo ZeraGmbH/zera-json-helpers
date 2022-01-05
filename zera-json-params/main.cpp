@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
             if(errListStructure.isEmpty()) { // valid structure is mandatory for state
                 QJsonObject jsonStateDataLoaded;
-                cZeraJsonParamsState jsonParamState;
+                ZeraJsonParamsState jsonParamState;
                 jsonParamState.setStructure(jsonParamStructure.getJson());
                 if(!jsonStateInputFileName.isEmpty()) {
                     QFile jsonStateFile(jsonStateInputFileName);
@@ -50,12 +50,12 @@ int main(int argc, char *argv[])
                         QByteArray jsonStateData = jsonStateFile.readAll();
                         jsonStateFile.close();
                         jsonStateDataLoaded = QJsonDocument::fromJson(jsonStateData).object();
-                        cZeraJsonParamsState::ErrList errListState = jsonParamState.validateJsonState(jsonStateDataLoaded);
+                        ZeraJsonParamsState::ErrList errListState = jsonParamState.validateJsonState(jsonStateDataLoaded);
                         if(!errListState.isEmpty()) {
                             ok = false;
                             qWarning("Errors occured validating parameter file %s", qPrintable(jsonStateInputFileName));
                             while(!errListState.isEmpty()) {
-                                cZeraJsonParamsState::errEntry err = errListState.takeFirst();
+                                ZeraJsonParamsState::errEntry err = errListState.takeFirst();
                                 qWarning("%s: %s", qPrintable(err.strID()), qPrintable(err.m_strInfo));
                             }
                         }

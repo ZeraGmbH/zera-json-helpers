@@ -4,10 +4,10 @@
 #include <QJsonObject>
 #include <QStringList>
 
-class cZeraJsonParamsState
+class ZeraJsonParamsState
 {
 public:
-    cZeraJsonParamsState();
+    ZeraJsonParamsState();
 
     enum errorTypes {
         ERR_INVALID_STRUCTURE = 0,

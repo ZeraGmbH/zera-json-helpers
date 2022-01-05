@@ -24,16 +24,16 @@ QJsonObject JsonStateFilePersistence::getJsonParamStructure()
 
 bool JsonStateFilePersistence::checkStateValidity(const QJsonObject &stateObject)
 {
-    cZeraJsonParamsState jsonParamsState;
+    ZeraJsonParamsState jsonParamsState;
     jsonParamsState.setStructure(m_jsonParamStructure);
-    cZeraJsonParamsState::ErrList errList = jsonParamsState.validateJsonState(stateObject);
+    ZeraJsonParamsState::ErrList errList = jsonParamsState.validateJsonState(stateObject);
     return errList.isEmpty();
 }
 
 QJsonObject JsonStateFilePersistence::loadState()
 {
     QJsonObject paramState;
-    cZeraJsonParamsState jsonParamsState;
+    ZeraJsonParamsState jsonParamsState;
     try {
         jsonParamsState.setStructure(m_jsonParamStructure);
         QJsonObject stateObject = cJsonFileLoader::loadJsonFile(m_stateFilePath);
