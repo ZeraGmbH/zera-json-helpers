@@ -5,7 +5,7 @@ cZeraJsonParamsStructure::cZeraJsonParamsStructure()
 {
 }
 
-cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::loadStructure(QJsonObject jsonStructure)
+cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::setJson(QJsonObject jsonStructure)
 {
     ErrList errList;
     if(!jsonStructure.isEmpty()) {
@@ -26,7 +26,7 @@ cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::loadStructure(QJsonO
     return errList;
 }
 
-const QJsonObject &cZeraJsonParamsStructure::jsonStructure()
+const QJsonObject &cZeraJsonParamsStructure::getJson()
 {
     return m_jsonObjStructure;
 }

@@ -37,12 +37,12 @@ int main(int argc, char *argv[])
             QJsonObject jsonStructureRaw = QJsonDocument::fromJson(jsonStructureData).object();
             // load structure
             cZeraJsonParamsStructure jsonParamStructure;
-            cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
+            cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
 
             if(errListStructure.isEmpty()) { // valid structure is mandatory for state
                 QJsonObject jsonStateDataLoaded;
                 cZeraJsonParamsState jsonParamState;
-                jsonParamState.setStructure(jsonParamStructure.jsonStructure());
+                jsonParamState.setStructure(jsonParamStructure.getJson());
                 if(!jsonStateInputFileName.isEmpty()) {
                     QFile jsonStateFile(jsonStateInputFileName);
                     ok = jsonStateFile.open(QIODevice::Unbuffered | QIODevice::ReadOnly);

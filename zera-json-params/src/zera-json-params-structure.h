@@ -26,8 +26,8 @@ public:
 
     bool isValid();
 
-    ErrList loadStructure(QJsonObject jsonStructure);
-    const QJsonObject& jsonStructure();
+    ErrList setJson(QJsonObject jsonStructure);
+    const QJsonObject& getJson();
 
 private:
     void resolveJsonParamTemplates(QJsonObject& jsonStructObj, ErrList& errList);
