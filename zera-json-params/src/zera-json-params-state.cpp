@@ -38,6 +38,15 @@ ZeraJsonParamsState::ErrList ZeraJsonParamsState::validateJsonState(const QJsonO
     return errList;
 }
 
+bool ZeraJsonParamsState::isJsonStateComplete(const QJsonObject &jsonState)
+{
+    if(jsonState.isEmpty()) {
+        return false;
+    }
+    QJsonObject defaultState = createDefaultJsonState();
+    return hasJsonsSameKeysRecursive(defaultState, jsonState);
+}
+
 void ZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList)
 {
     for(QJsonObject::ConstIterator structSubIter=jsonStructObj.begin(); structSubIter!=jsonStructObj.end(); structSubIter++) {
@@ -160,6 +169,30 @@ void ZeraJsonParamsState::validateJsonStateValue(const QJsonValue &jsonStateValu
         errEntry error(ERR_INVALID_STRUCTURE_FATAL, jsonStatePathList.join("."));
         errList.append(error);
     }
+}
+
+bool ZeraJsonParamsState::hasJsonsSameKeysRecursive(const QJsonObject &jsonReference, const QJsonObject &jsonTest)
+{
+    QStringList topKeysRef = jsonReference.keys();
+    QStringList topKeysTest = jsonTest.keys();
+    if(topKeysRef != topKeysTest) {
+        return false;
+    }
+    bool stillSame = true;
+    for(QJsonObject::ConstIterator iterRef = jsonReference.begin(); iterRef != jsonReference.end() && stillSame; iterRef++) {
+        if(iterRef.value().isObject()) {
+            auto iterTest = jsonTest.find(iterRef.key());
+            if(iterTest != jsonTest.end() && iterTest.value().isObject()) {
+                QJsonObject subRef = iterRef.value().toObject();
+                QJsonObject subTest = iterTest.value().toObject();
+                stillSame = hasJsonsSameKeysRecursive(subRef, subTest);
+            }
+            else {
+                stillSame = false;
+            }
+        }
+    }
+    return stillSame;
 }
 
 ZeraJsonParamsState::errEntry::errEntry(ZeraJsonParamsState::errorTypes errType, QString strInfo) :
