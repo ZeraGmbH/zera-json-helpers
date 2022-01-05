@@ -5,19 +5,22 @@
 #include "zera-json-params-structure.h"
 #include "zera-json-params-state.h"
 
-// positive: valid template / creete and check default
 TEST(TEST_STATE,VALID_ALL_TYPES) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES");
     cZeraJsonParamsStructure jsonParamStructure;
     cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.loadStructure(jsonStructureRaw);
-    EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
-    if(errListStructure.isEmpty()) {
-        cZeraJsonParamsState jsonParamState;
-        jsonParamState.setStructure(jsonParamStructure.jsonStructure());
-        QJsonObject jsonParamDefault = jsonParamState.createDefaultJsonState();
-        QJsonObject jsonParamDefaultExpected = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES_DEFAULT");
-        EXPECT_EQ(jsonParamDefault, jsonParamDefaultExpected) << "Expected default params do not match";
-    }
+    EXPECT_TRUE(errListStructure.isEmpty());
+}
+
+TEST(TEST_STATE,VALID_DEFAULT) {
+    cZeraJsonParamsStructure jsonParamStructure;
+    jsonParamStructure.loadStructure(ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES"));
+
+    cZeraJsonParamsState jsonParamState;
+    jsonParamState.setStructure(jsonParamStructure.jsonStructure());
+    QJsonObject jsonParamDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject jsonParamDefaultExpected = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES_DEFAULT");
+    EXPECT_EQ(jsonParamDefault, jsonParamDefaultExpected) << "Expected default params do not match";
 }
 
 TEST(TEST_STATE,EMPTY_STRUCT) {
