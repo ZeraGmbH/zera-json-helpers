@@ -38,7 +38,7 @@ ZeraJsonParamsState::ErrList ZeraJsonParamsState::validateJsonState(const QJsonO
     return errList;
 }
 
-void ZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonStateObj, QJsonObject& jsonStructObj, QStringList jsonStructurePathList)
+void ZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList)
 {
     for(QJsonObject::ConstIterator structSubIter=jsonStructObj.begin(); structSubIter!=jsonStructObj.end(); structSubIter++) {
         QString structKey = structSubIter.key();
@@ -70,7 +70,7 @@ void ZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonState
             }
         }
         else if(jsonStructObj[structKey].isObject() && !jsonStructObj[structKey].isNull()) {
-            QJsonValueRef subValue = jsonStructObj[structKey];
+            QJsonValue subValue = jsonStructObj[structKey];
             QJsonObject subObject = subValue.toObject();
             jsonStructurePathList.push_back(structKey);
             createDefaultJsonStateRecursive(jsonStateObj, subObject, jsonStructurePathList);
