@@ -8,19 +8,19 @@
 // negative: empty structure (is not a template test exactly...)
 TEST(TEST_TEMPLATE,EMPTY){
     QJsonObject jsonStructureRaw;
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    ZeraJsonParamsStructure jsonParamStructure;
+    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.length(), 1) << "Expect one error for empty structure";
     for(auto err : errListStructure) {
-        EXPECT_EQ(err.m_errType, cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION) << "Expect ERR_INVALID_PARAM_DEFINITION";
+        EXPECT_EQ(err.m_errType, ZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION) << "Expect ERR_INVALID_PARAM_DEFINITION";
     }
 }
 
 // positive: valid template
 TEST(TEST_TEMPLATE,VALID){
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,VALID");
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    ZeraJsonParamsStructure jsonParamStructure;
+    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
     QJsonObject jsonStructure = jsonParamStructure.getJson();
 
@@ -29,8 +29,8 @@ TEST(TEST_TEMPLATE,VALID){
 // positive: valid template / resolve one parameter
 TEST(TEST_TEMPLATE,VALID_CONTENT){
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,VALID_CONTENT");
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    ZeraJsonParamsStructure jsonParamStructure;
+    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
     QJsonObject jsonStructure = jsonParamStructure.getJson();
     int elemCount = jsonStructure.count();
@@ -59,8 +59,8 @@ TEST(TEST_TEMPLATE,VALID_CONTENT){
 // positive: valid template / resolve one parameter
 TEST(TEST_TEMPLATE,VALID_CONTENT_NESTED){
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,VALID_CONTENT_NESTED");
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    ZeraJsonParamsStructure jsonParamStructure;
+    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
     QJsonObject jsonStructure = jsonParamStructure.getJson();
     // Check whole content
@@ -71,22 +71,22 @@ TEST(TEST_TEMPLATE,VALID_CONTENT_NESTED){
 // negative: check extraction of template indirectly by invalid parameter: min > max & default > max
 TEST(TEST_TEMPLATE,MIN_LARGER_MAX){
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,MIN_LARGER_MAX");
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    ZeraJsonParamsStructure jsonParamStructure;
+    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.length(),2);
     for(auto err : errListStructure){
-        EXPECT_EQ(err.m_errType,cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_TEMPLATE_DEFINITION);
+        EXPECT_EQ(err.m_errType,ZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_TEMPLATE_DEFINITION);
     }
 }
 
 // negative: check extraction of template indirectly by invalid parameter: type
 TEST(TEST_TEMPLATE,INVALID_TYPE){
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,INVALID_TYPE");
-    cZeraJsonParamsStructure jsonParamStructure;
-    cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    ZeraJsonParamsStructure jsonParamStructure;
+    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.length(),1);
     for(auto err : errListStructure){
-        EXPECT_EQ(err.m_errType,cZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_TEMPLATE_DEFINITION);
+        EXPECT_EQ(err.m_errType,ZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_TEMPLATE_DEFINITION);
     }
 }
 

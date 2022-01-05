@@ -6,10 +6,10 @@
 #include <QVariant>
 #include <QJsonObject>
 
-class cZeraJsonParamsStructure
+class ZeraJsonParamsStructure
 {
 public:
-    cZeraJsonParamsStructure();
+    ZeraJsonParamsStructure();
 
     enum errorTypes {
         ERR_INVALID_PARAM_TEMPLATE = 0,

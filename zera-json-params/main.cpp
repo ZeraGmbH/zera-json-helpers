@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 
             QJsonObject jsonStructureRaw = QJsonDocument::fromJson(jsonStructureData).object();
             // load structure
-            cZeraJsonParamsStructure jsonParamStructure;
-            cZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+            ZeraJsonParamsStructure jsonParamStructure;
+            ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
 
             if(errListStructure.isEmpty()) { // valid structure is mandatory for state
                 QJsonObject jsonStateDataLoaded;
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
             else {
                 qWarning("Errors occured loading json param structure file %s", qPrintable(jsonStructureFileName));
                 while(!errListStructure.isEmpty()) {
-                    cZeraJsonParamsStructure::errEntry err = errListStructure.takeFirst();
+                    ZeraJsonParamsStructure::errEntry err = errListStructure.takeFirst();
                     qWarning("%s: %s", qPrintable(err.strID()), qPrintable(err.m_strInfo));
                 }
             }

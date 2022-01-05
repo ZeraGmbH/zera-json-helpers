@@ -1,11 +1,11 @@
 #include "zera-json-params-structure.h"
 #include <QSet>
 
-cZeraJsonParamsStructure::cZeraJsonParamsStructure()
+ZeraJsonParamsStructure::ZeraJsonParamsStructure()
 {
 }
 
-cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::setJson(QJsonObject jsonStructure)
+ZeraJsonParamsStructure::ErrList ZeraJsonParamsStructure::setJson(QJsonObject jsonStructure)
 {
     ErrList errList;
     if(!jsonStructure.isEmpty()) {
@@ -26,17 +26,17 @@ cZeraJsonParamsStructure::ErrList cZeraJsonParamsStructure::setJson(QJsonObject 
     return errList;
 }
 
-const QJsonObject &cZeraJsonParamsStructure::getJson()
+const QJsonObject &ZeraJsonParamsStructure::getJson()
 {
     return m_jsonObjStructure;
 }
 
-bool cZeraJsonParamsStructure::isValid()
+bool ZeraJsonParamsStructure::isValid()
 {
     return !m_jsonObjStructure.isEmpty();
 }
 
-void cZeraJsonParamsStructure::resolveJsonParamTemplates(QJsonObject &jsonStructObj, ErrList& errList)
+void ZeraJsonParamsStructure::resolveJsonParamTemplates(QJsonObject &jsonStructObj, ErrList& errList)
 {
     // Find "zj_param_templates" object and start recursive resolve
     if(jsonStructObj.contains("zj_param_templates")) { // param_templates can be ommitted
@@ -59,7 +59,7 @@ void cZeraJsonParamsStructure::resolveJsonParamTemplates(QJsonObject &jsonStruct
     }
 }
 
-bool cZeraJsonParamsStructure::resolveJsonParamTemplatesRecursive(QJsonObject& jsonStructObj, const QJsonObject jsonParamTemplatesObj, ErrList& errList)
+bool ZeraJsonParamsStructure::resolveJsonParamTemplatesRecursive(QJsonObject& jsonStructObj, const QJsonObject jsonParamTemplatesObj, ErrList& errList)
 {
     bool objectChanged = false;
     for(QJsonObject::Iterator sub=jsonStructObj.begin(); sub!=jsonStructObj.end(); sub++) {
@@ -105,8 +105,8 @@ bool cZeraJsonParamsStructure::resolveJsonParamTemplatesRecursive(QJsonObject& j
     return objectChanged;
 }
 
-QSet<QString> cZeraJsonParamsStructure::m_svalidParamEntryKeys = QSet<QString>() << "type" << "min" << "max" << "decimals" << "default" << "list";
-QHash<QString, QStringList> cZeraJsonParamsStructure::m_svalidParamTypes {
+QSet<QString> ZeraJsonParamsStructure::m_svalidParamEntryKeys = QSet<QString>() << "type" << "min" << "max" << "decimals" << "default" << "list";
+QHash<QString, QStringList> ZeraJsonParamsStructure::m_svalidParamTypes {
     { "bool",  QStringList() << "default"},
     { "number", QStringList() << "min" << "max" << "decimals" << "default"},
     { "string", QStringList() << "default"},
@@ -114,7 +114,7 @@ QHash<QString, QStringList> cZeraJsonParamsStructure::m_svalidParamTypes {
 };
 
 
-void cZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter, bool inTemplate, QStringList jsonStructurePathList, cZeraJsonParamsStructure::ErrList &errList)
+void ZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter, bool inTemplate, QStringList jsonStructurePathList, ZeraJsonParamsStructure::ErrList &errList)
 {
     QJsonValue value = iter.value();
     QString key = iter.key();
@@ -257,7 +257,7 @@ void cZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter
     }
 }
 
-void cZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &jsonStructObj, QStringList jsonStructurePathList, cZeraJsonParamsStructure::ErrList &errList)
+void ZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &jsonStructObj, QStringList jsonStructurePathList, ZeraJsonParamsStructure::ErrList &errList)
 {
     for(QJsonObject::Iterator sub=jsonStructObj.begin(); sub!=jsonStructObj.end(); sub++) {
         QString key = sub.key();
@@ -281,13 +281,13 @@ void cZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &j
     }
 }
 
-cZeraJsonParamsStructure::errEntry::errEntry(cZeraJsonParamsStructure::errorTypes errType, QString strInfo) :
+ZeraJsonParamsStructure::errEntry::errEntry(ZeraJsonParamsStructure::errorTypes errType, QString strInfo) :
     m_errType(errType),
     m_strInfo(strInfo)
 {
 }
 
-QString cZeraJsonParamsStructure::errEntry::strID()
+QString ZeraJsonParamsStructure::errEntry::strID()
 {
     QString str;
     switch(m_errType) {
