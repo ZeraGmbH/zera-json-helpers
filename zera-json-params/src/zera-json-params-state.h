@@ -34,7 +34,7 @@ public:
     ErrList validateJsonState(const QJsonObject &jsonState);
 
 private:
-    void createDefaultJsonStateRecursive(QJsonObject& jsonStateObj, QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
+    void createDefaultJsonStateRecursive(QJsonObject& jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
     void validateJsonStateRecursive(const QJsonObject &jsonStateObj, QStringList jsonStatePathList, ErrList &errList);
     void validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, ErrList &errList);
 
