@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>json-test-files/TEST_JSON,FIND.json</file>
+        <file>json-test-files/TEST_JSON_LOAD.json</file>
         <file>json-test-files/TEST_TEMPLATE,VALID.json</file>
         <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT.json</file>
         <file>json-test-files/TEST_TEMPLATE,VALID_CONTENT_RESOLVE_EXPECTED.json</file>
@@ -9,23 +10,22 @@
         <file>json-test-files/TEST_TEMPLATE,MIN_LARGER_MAX.json</file>
         <file>json-test-files/TEST_TEMPLATE,INVALID_TYPE.json</file>
         <file>json-test-files/TEST_TEMPLATE,INVALID_LINK.json</file>
-        <file>json-test-files/TEST_PARAMS,VALID.json</file>
-        <file>json-test-files/TEST_PARAMS,TYPE_MISSING.json</file>
-        <file>json-test-files/TEST_PARAMS,TYPE_INVALID.json</file>
-        <file>json-test-files/TEST_PARAMS,PROPERTY_INVALID.json</file>
-        <file>json-test-files/TEST_PARAMS,DEFAULT_MISSING.json</file>
-        <file>json-test-files/TEST_PARAMS,MIN_MAX_MISSING.json</file>
-        <file>json-test-files/TEST_PARAMS,MIN_MAX_INVALID.json</file>
-        <file>json-test-files/TEST_PARAMS,MIN_MAX_DEFAULT_LIMITS.json</file>
-        <file>json-test-files/TEST_PARAMS,BOOL_INVALID_TYPE_DEFAULT.json</file>
-        <file>json-test-files/TEST_PARAMS,FLOAT_INVALID_TYPE_DEFAULT.json</file>
-        <file>json-test-files/TEST_PARAMS,FLOAT_INVALID_DECIMALS.json</file>
-        <file>json-test-files/TEST_PARAMS,STRING_INVALID_TYPE_DEFAULT.json</file>
+        <file>json-test-files/TEST_STRUCTURE,VALID_STRUCURE.json</file>
+        <file>json-test-files/TEST_STRUCTURE,TYPE_MISSING.json</file>
+        <file>json-test-files/TEST_STRUCTURE,TYPE_INVALID.json</file>
+        <file>json-test-files/TEST_STRUCTURE,PROPERTY_INVALID.json</file>
+        <file>json-test-files/TEST_STRUCTURE,DEFAULT_MISSING.json</file>
+        <file>json-test-files/TEST_STRUCTURE,MIN_MAX_MISSING.json</file>
+        <file>json-test-files/TEST_STRUCTURE,MIN_MAX_INVALID.json</file>
+        <file>json-test-files/TEST_STRUCTURE,MIN_MAX_DEFAULT_LIMITS.json</file>
+        <file>json-test-files/TEST_STRUCTURE,BOOL_INVALID_TYPE_DEFAULT.json</file>
+        <file>json-test-files/TEST_STRUCTURE,FLOAT_INVALID_TYPE_DEFAULT.json</file>
+        <file>json-test-files/TEST_STRUCTURE,FLOAT_INVALID_DECIMALS.json</file>
+        <file>json-test-files/TEST_STRUCTURE,STRING_INVALID_TYPE_DEFAULT.json</file>
         <file>json-test-files/TEST_STATE,VALID_ALL_TYPES.json</file>
         <file>json-test-files/TEST_STATE,VALID_ALL_TYPES_DEFAULT.json</file>
         <file>json-test-files/TEST_STATE,VALIDATE_TYPE_ERRORS.json</file>
         <file>json-test-files/TEST_STATE,VALIDATE_LIMIT_ERRORS.json</file>
-        <file>json-test-files/TEST_JSON_LOAD.json</file>
         <file>json-test-files/TEST_PERSISTENCE,LOAD_INVALID_FILE.json</file>
         <file>json-test-files/TEST_PERSISTENCE,LOAD_VALID_FILE.json</file>
         <file>json-test-files/TEST_PERSISTENCE_STRUCTURE.json</file>
