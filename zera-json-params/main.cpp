@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
                 if(ok && !jsonStateOutputFileName.isEmpty()) {
                     if(jsonStateDataLoaded.isEmpty()) {
                         qInfo("Loading default parameter state");
-                        jsonStateDataLoaded = jsonParamState.createDefaultJsonState();
+                        jsonStateDataLoaded = jsonParamState.getDefaultJsonState();
                     }
                 }
             }

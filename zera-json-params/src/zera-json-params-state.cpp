@@ -10,15 +10,19 @@ ZeraJsonParamsState::ZeraJsonParamsState()
 
 void ZeraJsonParamsState::setStructure(const QJsonObject jsonStructure)
 {
-    m_jsonStructure = jsonStructure;
+    if(m_jsonStructure != jsonStructure) {
+        m_jsonStructure = jsonStructure;
+        m_jsonDefaultState = QJsonObject();
+    }
 }
 
-QJsonObject ZeraJsonParamsState::createDefaultJsonState()
+QJsonObject ZeraJsonParamsState::getDefaultJsonState()
 {
-    QJsonObject jsonStateObj;
-    QStringList jsonStructurePathList;
-    createDefaultJsonStateRecursive(jsonStateObj, m_jsonStructure, jsonStructurePathList);
-    return jsonStateObj;
+    if(m_jsonDefaultState.isEmpty()) {
+        QStringList jsonStructurePathList;
+        getDefaultJsonStateRecursive(m_jsonDefaultState, m_jsonStructure, jsonStructurePathList);
+    }
+    return m_jsonDefaultState;
 }
 
 ZeraJsonParamsState::ErrList ZeraJsonParamsState::validateJsonState(const QJsonObject &jsonState)
@@ -43,11 +47,11 @@ bool ZeraJsonParamsState::isJsonStateComplete(const QJsonObject &jsonState)
     if(jsonState.isEmpty()) {
         return false;
     }
-    QJsonObject defaultState = createDefaultJsonState();
+    QJsonObject defaultState = getDefaultJsonState();
     return hasJsonsSameKeysRecursive(defaultState, jsonState);
 }
 
-void ZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList)
+void ZeraJsonParamsState::getDefaultJsonStateRecursive(QJsonObject &jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList)
 {
     for(QJsonObject::ConstIterator structSubIter=jsonStructObj.begin(); structSubIter!=jsonStructObj.end(); structSubIter++) {
         QString structKey = structSubIter.key();
@@ -82,7 +86,7 @@ void ZeraJsonParamsState::createDefaultJsonStateRecursive(QJsonObject &jsonState
             QJsonValue subValue = jsonStructObj[structKey];
             QJsonObject subObject = subValue.toObject();
             jsonStructurePathList.push_back(structKey);
-            createDefaultJsonStateRecursive(jsonStateObj, subObject, jsonStructurePathList);
+            getDefaultJsonStateRecursive(jsonStateObj, subObject, jsonStructurePathList);
             jsonStructurePathList.pop_back();
         }
     }

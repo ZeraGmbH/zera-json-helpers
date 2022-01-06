@@ -44,7 +44,7 @@ QJsonObject JsonStateFilePersistence::loadState()
         paramState = stateObject;
     }
     catch(std::runtime_error &e){
-        paramState = jsonParamsState.createDefaultJsonState();
+        paramState = jsonParamsState.getDefaultJsonState();
         saveState(paramState);
     }
     return paramState;
