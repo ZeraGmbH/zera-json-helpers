@@ -48,7 +48,7 @@ bool ZeraJsonParamsState::isJsonStateComplete(const QJsonObject &jsonState)
         return false;
     }
     QJsonObject defaultState = getDefaultJsonState();
-    return hasJsonsSameKeysRecursive(defaultState, jsonState);
+    return haveJsonsSameKeysRecursive(defaultState, jsonState);
 }
 
 void ZeraJsonParamsState::getDefaultJsonStateRecursive(QJsonObject &jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList)
@@ -175,13 +175,18 @@ void ZeraJsonParamsState::validateJsonStateValue(const QJsonValue &jsonStateValu
     }
 }
 
-bool ZeraJsonParamsState::hasJsonsSameKeysRecursive(const QJsonObject &jsonReference, const QJsonObject &jsonTest)
+bool ZeraJsonParamsState::haveJsonsSameKeysRecursive(const QJsonObject &jsonReference, const QJsonObject &jsonTest)
 {
-    QStringList topKeysRef = jsonReference.keys();
-    QStringList topKeysTest = jsonTest.keys();
-    if(topKeysRef != topKeysTest) {
-        return false;
-    }
+    return haveJsonsSameKeysTop(jsonReference, jsonTest) && haveJsonsSameKeysSub(jsonReference, jsonTest);
+}
+
+bool ZeraJsonParamsState::haveJsonsSameKeysTop(const QJsonObject &jsonReference, const QJsonObject &jsonTest)
+{
+    return jsonReference.keys() == jsonTest.keys();
+}
+
+bool ZeraJsonParamsState::haveJsonsSameKeysSub(const QJsonObject &jsonReference, const QJsonObject &jsonTest)
+{
     bool stillSame = true;
     for(QJsonObject::ConstIterator iterRef = jsonReference.begin(); iterRef != jsonReference.end() && stillSame; iterRef++) {
         if(iterRef.value().isObject()) {
@@ -189,7 +194,7 @@ bool ZeraJsonParamsState::hasJsonsSameKeysRecursive(const QJsonObject &jsonRefer
             if(iterTest != jsonTest.end() && iterTest.value().isObject()) {
                 QJsonObject subRef = iterRef.value().toObject();
                 QJsonObject subTest = iterTest.value().toObject();
-                stillSame = hasJsonsSameKeysRecursive(subRef, subTest);
+                stillSame = haveJsonsSameKeysRecursive(subRef, subTest);
             }
             else {
                 stillSame = false;
