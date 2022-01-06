@@ -125,40 +125,6 @@ TEST(TEST_STATE,CHECK_COMLETE_EMPTY) {
     EXPECT_FALSE(jsonParamState.isJsonStateComplete(emptyState));
 }
 
-TEST(TEST_STATE,CHECK_NOT_COMLETE_BASE) {
-    QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES");
-    ZeraJsonParamsStructure jsonParamStructure;
-    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
-    ASSERT_TRUE(errListStructure.isEmpty());
-
-    ZeraJsonParamsState jsonParamState;
-    jsonParamState.setStructure(jsonParamStructure.getJson());
-
-    QJsonObject stateDefault = jsonParamState.getDefaultJsonState();
-    QJsonObject stateOneMissing = stateDefault;
-    stateOneMissing.remove("param_from_template");
-    ASSERT_NE(stateDefault, stateOneMissing);
-    EXPECT_FALSE(jsonParamState.isJsonStateComplete(stateOneMissing));
-}
-
-TEST(TEST_STATE,CHECK_NOT_COMLETE_SUB) {
-    QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES");
-    ZeraJsonParamsStructure jsonParamStructure;
-    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
-    ASSERT_TRUE(errListStructure.isEmpty());
-
-    ZeraJsonParamsState jsonParamState;
-    jsonParamState.setStructure(jsonParamStructure.getJson());
-
-    QJsonObject stateDefault = jsonParamState.getDefaultJsonState();
-    QJsonObject stateOneMissing = stateDefault;
-    QJsonObject subObj = stateOneMissing["bool_params"].toObject();
-    subObj.remove("param_from_template");
-    stateOneMissing["bool_params"] = subObj;
-    ASSERT_NE(stateDefault, stateOneMissing);
-    EXPECT_FALSE(jsonParamState.isJsonStateComplete(stateOneMissing));
-}
-
 TEST(TEST_STATE,CHECK_COMLETE_OK) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES");
     ZeraJsonParamsStructure jsonParamStructure;
