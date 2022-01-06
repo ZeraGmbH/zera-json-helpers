@@ -35,7 +35,7 @@ TEST(TEST_JSON_PERSISTENCE, SAVE_VALID_STATE) {
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
     defaultStateGenerator.setStructure(stateStruct);
 
-    QJsonObject correctStateDefault = defaultStateGenerator.createDefaultJsonState();
+    QJsonObject correctStateDefault = defaultStateGenerator.getDefaultJsonState();
 
     file.write(QJsonDocument(correctStateDefault).toJson());
     file.flush();
@@ -62,7 +62,7 @@ TEST(TEST_JSON_PERSISTENCE, LOAD_INVALID_FILE) {
 
     QJsonObject jsonState = persistentStateHelper.loadState();
 
-    QJsonObject correctStateDefault = defaultStateGenerator.createDefaultJsonState();
+    QJsonObject correctStateDefault = defaultStateGenerator.getDefaultJsonState();
     EXPECT_EQ(jsonState, correctStateDefault);
 }
 
@@ -78,7 +78,7 @@ TEST(TEST_JSON_PERSISTENCE, LOAD_NOTEXIST_FILE) {
     ZeraJsonParamsState defaultStateGenerator;
     defaultStateGenerator.setStructure(stateStruct);
 
-    QJsonObject correctStateDefault=defaultStateGenerator.createDefaultJsonState();
+    QJsonObject correctStateDefault=defaultStateGenerator.getDefaultJsonState();
 
     EXPECT_NE(state,correctStateDefault);
     persistentStateHelper.loadState();

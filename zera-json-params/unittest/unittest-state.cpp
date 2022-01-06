@@ -18,7 +18,7 @@ TEST(TEST_STATE,VALID_DEFAULT) {
 
     ZeraJsonParamsState jsonParamState;
     jsonParamState.setStructure(jsonParamStructure.getJson());
-    QJsonObject jsonParamDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject jsonParamDefault = jsonParamState.getDefaultJsonState();
     QJsonObject jsonParamDefaultExpected = ZeraJsonHelper::loadFromQrc("TEST_STATE,VALID_ALL_TYPES_DEFAULT");
     EXPECT_EQ(jsonParamDefault, jsonParamDefaultExpected) << "Expected default params do not match";
 }
@@ -62,7 +62,7 @@ TEST(TEST_STATE,VALIDATE_DEFAULT) {
     ZeraJsonParamsState jsonParamState;
     jsonParamState.setStructure(jsonParamStructure.getJson());
 
-    QJsonObject jsonParamDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject jsonParamDefault = jsonParamState.getDefaultJsonState();
     ZeraJsonParamsState::ErrList paramErrList = jsonParamState.validateJsonState(jsonParamDefault);
     EXPECT_EQ(paramErrList.count(), 0) << "Expected default params valid";
 }
@@ -76,7 +76,7 @@ TEST(TEST_STATE,VALIDATE_DEFAULT_ONE_MISSING) {
     ZeraJsonParamsState jsonParamState;
     jsonParamState.setStructure(jsonParamStructure.getJson());
 
-    QJsonObject stateDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject stateDefault = jsonParamState.getDefaultJsonState();
     QJsonObject stateOneMissing = stateDefault;
     stateOneMissing.remove("param_from_template");
     ASSERT_NE(stateDefault, stateOneMissing);
@@ -134,7 +134,7 @@ TEST(TEST_STATE,CHECK_NOT_COMLETE_BASE) {
     ZeraJsonParamsState jsonParamState;
     jsonParamState.setStructure(jsonParamStructure.getJson());
 
-    QJsonObject stateDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject stateDefault = jsonParamState.getDefaultJsonState();
     QJsonObject stateOneMissing = stateDefault;
     stateOneMissing.remove("param_from_template");
     ASSERT_NE(stateDefault, stateOneMissing);
@@ -150,7 +150,7 @@ TEST(TEST_STATE,CHECK_NOT_COMLETE_SUB) {
     ZeraJsonParamsState jsonParamState;
     jsonParamState.setStructure(jsonParamStructure.getJson());
 
-    QJsonObject stateDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject stateDefault = jsonParamState.getDefaultJsonState();
     QJsonObject stateOneMissing = stateDefault;
     QJsonObject subObj = stateOneMissing["bool_params"].toObject();
     subObj.remove("param_from_template");
@@ -168,7 +168,7 @@ TEST(TEST_STATE,CHECK_COMLETE_OK) {
     ZeraJsonParamsState jsonParamState;
     jsonParamState.setStructure(jsonParamStructure.getJson());
 
-    QJsonObject stateDefault = jsonParamState.createDefaultJsonState();
+    QJsonObject stateDefault = jsonParamState.getDefaultJsonState();
     EXPECT_TRUE(jsonParamState.isJsonStateComplete(stateDefault));
 }
 

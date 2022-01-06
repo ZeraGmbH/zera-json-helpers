@@ -30,17 +30,18 @@ public:
 
     void setStructure(const QJsonObject jsonStructure);
 
-    QJsonObject createDefaultJsonState();
+    QJsonObject getDefaultJsonState();
     ErrList validateJsonState(const QJsonObject &jsonState);
     bool isJsonStateComplete(const QJsonObject &jsonState);
 
 private:
-    void createDefaultJsonStateRecursive(QJsonObject& jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
+    void getDefaultJsonStateRecursive(QJsonObject& jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
     void validateJsonStateRecursive(const QJsonObject &jsonStateObj, QStringList jsonStatePathList, ErrList &errList);
     void validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, ErrList &errList);
     bool hasJsonsSameKeysRecursive(const QJsonObject &jsonReference, const QJsonObject &jsonTest);
 
     QJsonObject m_jsonStructure;
+    QJsonObject m_jsonDefaultState;
 };
 
 #endif // CZERAJSONPARAMSSTATE_H
