@@ -38,9 +38,6 @@ private:
     void getDefaultJsonStateRecursive(QJsonObject& jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
     void validateJsonStateRecursive(const QJsonObject &jsonStateObj, QStringList jsonStatePathList, ErrList &errList);
     void validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, ErrList &errList);
-    static bool haveJsonsSameKeysRecursive(const QJsonObject &jsonReference, const QJsonObject &jsonTest);
-    static bool haveJsonsSameKeysTop(const QJsonObject &jsonReference, const QJsonObject &jsonTest);
-    static bool haveJsonsSameKeysSub(const QJsonObject &jsonReference, const QJsonObject &jsonTest);
 
     QJsonObject m_jsonStructure;
     QJsonObject m_jsonDefaultState;
