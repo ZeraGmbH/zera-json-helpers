@@ -17,7 +17,7 @@ public:
     QJsonObject loadState();
     bool saveState(QJsonObject stateObject);
 
-    QJsonObject getJsonParamStructure();
+    QJsonObject getJsonParamStructure() const;
 
 private:
     bool checkStateValidity(const QJsonObject& stateObject);
