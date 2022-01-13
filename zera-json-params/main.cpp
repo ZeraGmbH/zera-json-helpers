@@ -41,8 +41,7 @@ int main(int argc, char *argv[])
 
             if(errListStructure.isEmpty()) { // valid structure is mandatory for state
                 QJsonObject jsonStateDataLoaded;
-                ZeraJsonParamsState jsonParamState;
-                jsonParamState.setStructure(jsonParamStructure.getJson());
+                ZeraJsonParamsState jsonParamState(jsonParamStructure.getJson());
                 if(!jsonStateInputFileName.isEmpty()) {
                     QFile jsonStateFile(jsonStateInputFileName);
                     ok = jsonStateFile.open(QIODevice::Unbuffered | QIODevice::ReadOnly);

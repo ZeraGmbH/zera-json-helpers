@@ -8,6 +8,7 @@ class ZeraJsonParamsState
 {
 public:
     ZeraJsonParamsState();
+    ZeraJsonParamsState(const QJsonObject jsonStructure);
 
     enum errorTypes {
         ERR_INVALID_STRUCTURE = 0,
