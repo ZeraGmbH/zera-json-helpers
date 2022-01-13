@@ -6,7 +6,11 @@
 
 ZeraJsonParamsState::ZeraJsonParamsState()
 {
+}
 
+ZeraJsonParamsState::ZeraJsonParamsState(const QJsonObject jsonStructure)
+{
+    m_jsonStructure = jsonStructure;
 }
 
 void ZeraJsonParamsState::setStructure(const QJsonObject jsonStructure)
