@@ -4,6 +4,7 @@ project(zera-json-params LANGUAGES CXX
 VERSION ${REPO_VERSION}
 )
 
+set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 # find required dependencies
