@@ -28,8 +28,8 @@ jobs:
           cd "$HOME/targetbuild"
 
           if [ "${{ matrix.compiler }}" == "clang" ]; then
-            export CC=${{ matrix.compiler }}
-            export CXX=${{ matrix.compiler }}
+            export CC=clang
+            export CXX=clang++
           fi
 
           cmake $GITHUB_WORKSPACE \
