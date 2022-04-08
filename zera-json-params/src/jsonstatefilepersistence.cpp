@@ -33,15 +33,9 @@ QJsonObject JsonStateFilePersistence::loadState()
 {
     QJsonObject paramState;
     ZeraJsonParamsState jsonParamsState(m_jsonParamStructure);
-    try {
-        QJsonObject stateObject = cJsonFileLoader::loadJsonFile(m_stateFilePath);
-        bool isValidState = checkStateValidity(stateObject);
-        if(!isValidState) {
-            throw std::runtime_error("invalid state");
-        }
-        paramState = stateObject;
-    }
-    catch(std::runtime_error &e){
+    paramState = cJsonFileLoader::loadJsonFile(m_stateFilePath);
+    bool isValidState = checkStateValidity(paramState);
+    if(!isValidState) {
         paramState = jsonParamsState.getDefaultJsonState();
         saveState(paramState);
     }
