@@ -31,7 +31,7 @@ add_library(zera-json-qml SHARED
 target_include_directories(zera-json-qml
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-    $<INSTALL_INTERFACE:include/zera-json-qml>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/zera-json-qml>
     )
 
 target_link_libraries(zera-json-qml
@@ -67,7 +67,7 @@ include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     zera-json-qmlConfigVersion.cmake
     VERSION ${PACKAGE_VERSION}
-    COMPATIBILITY SameMinorVersion
+    COMPATIBILITY SameMajorVersion
     )
 
 # configure *Config.cmake

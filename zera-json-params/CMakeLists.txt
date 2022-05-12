@@ -30,7 +30,7 @@ add_library(zera-json-params SHARED
 target_include_directories(zera-json-params
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-    $<INSTALL_INTERFACE:include/zera-json-params>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/zera-json-params>
     )
 
 target_link_libraries(zera-json-params
@@ -66,7 +66,7 @@ include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     zera-json-paramsConfigVersion.cmake
     VERSION ${PACKAGE_VERSION}
-    COMPATIBILITY SameMinorVersion
+    COMPATIBILITY SameMajorVersion
     )
 
 # configure *Config.cmake
