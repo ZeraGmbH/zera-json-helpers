@@ -2,14 +2,14 @@
 #include <QFile>
 #include <QJsonDocument>
 
-QJsonObject cJsonFileLoader::loadJsonFile(const QString fileName)
+QJsonObject cJsonFileLoader::loadJsonFile(const QString fileName, QJsonParseError *jsonError)
 {
     QJsonObject json;
     QFile file(fileName);
     if(file.open(QIODevice::Unbuffered | QIODevice::ReadOnly)) {
         QByteArray jsondeviceInfoData = file.readAll();
         file.close();
-        json = QJsonDocument::fromJson(jsondeviceInfoData).object();
+        json = QJsonDocument::fromJson(jsondeviceInfoData, jsonError).object();
     }
     return json;
 }

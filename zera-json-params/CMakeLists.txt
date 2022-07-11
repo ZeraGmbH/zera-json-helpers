@@ -135,6 +135,10 @@ file(GLOB TEST_RESOURCE_FILES
     unittest/json-test-files/*.json
     )
 
+file(GLOB TEST_RESOURCE_FILES_INVALID
+    unittest/json-test-invalid-files/*.json
+    )
+
 # Note 1: In OE we do not (yet) have jsonlint-php so it must be optional
 # Note 2: In case we make COMMAND in target below conditional on JSONLINT,
 #         qt-creator does not display source-capabilities. That's what the
@@ -149,9 +153,13 @@ add_custom_target(zera-json-params-unittest-dont-forget-qrc ALL
     SOURCES ${TEST_RESOURCE_FILES}
     COMMAND ${JSONLINT} ${TEST_RESOURCE_FILES}
     )
+add_custom_target(zera-json-params-unittest-dont-forget-qrc-invalid ALL
+    SOURCES ${TEST_RESOURCE_FILES_INVALID}
+    COMMAND echo ${TEST_RESOURCE_FILES_INVALID}
+    )
 
 # check if all json test files made it into resources.qrc
-foreach(jsonfile ${TEST_RESOURCE_FILES})
+foreach(jsonfile ${TEST_RESOURCE_FILES} ${TEST_RESOURCE_FILES_INVALID})
     get_filename_component(filename ${jsonfile} NAME)
     file(STRINGS unittest/resources.qrc lines REGEX "${filename}")
     if(NOT lines)
