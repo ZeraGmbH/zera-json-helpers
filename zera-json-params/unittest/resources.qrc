@@ -30,4 +30,7 @@
         <file>json-test-files/TEST_PERSISTENCE,LOAD_VALID_FILE.json</file>
         <file>json-test-files/TEST_PERSISTENCE_STRUCTURE.json</file>
     </qresource>
+    <qresource prefix="/">
+        <file>json-test-invalid-files/TEST_JSON_LOAD_INVALID.json</file>
+    </qresource>
 </RCC>
