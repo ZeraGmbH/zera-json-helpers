@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 
 # find required dependencies
 find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
-find_package(GTest)
+find_package(GTest REQUIRED)
 
 file(GLOB HEADER
     ${PROJECT_SOURCE_DIR}/src/*.h
@@ -119,7 +119,6 @@ install(TARGETS zera-json-params-cli
 
 # Unittest
 ####################
-if(${GTest_FOUND})
 message(STATUS "building with unittest")
 file(GLOB UNITTEST_SOURCE
     ${PROJECT_SOURCE_DIR}/unittest/*.cpp
@@ -188,4 +187,3 @@ enable_testing()
 add_test(NAME    zera-json-params-unittest
          COMMAND zera-json-params-unittest
 )
-endif()
