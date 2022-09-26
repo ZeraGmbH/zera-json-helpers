@@ -25,19 +25,19 @@ TEST(TEST_JSON_LOAD, STORE_AND_COMPARE) {
 }
 
 TEST(TEST_JSON_LOAD, LOAD_NOT_EXIST_NO_PARSE_ERROR) {
-    QJsonParseError jsonError;
+    QJsonParseError jsonError = {};
     QJsonObject json = cJsonFileLoader::loadJsonFile("foo", &jsonError);
     EXPECT_EQ(jsonError.error, QJsonParseError::NoError);
 }
 
 TEST(TEST_JSON_LOAD, LOAD_EXISTING_NO_PARSE_ERROR) {
-    QJsonParseError jsonError;
+    QJsonParseError jsonError = {};
     QJsonObject json = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_JSON_LOAD.json", &jsonError);
     EXPECT_EQ(jsonError.error, QJsonParseError::NoError);
 }
 
 TEST(TEST_JSON_LOAD, LOAD_EXISTING_PARSE_ERROR) {
-    QJsonParseError jsonError;
+    QJsonParseError jsonError = {};
     QJsonObject json = cJsonFileLoader::loadJsonFile(":/json-test-invalid-files/TEST_JSON_LOAD_INVALID.json", &jsonError);
     EXPECT_NE(jsonError.error, QJsonParseError::NoError);
 }
