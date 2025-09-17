@@ -1,96 +1,5 @@
-cmake_minimum_required(VERSION 3.1)
-# set project name and language
-project(zera-json-params LANGUAGES CXX
-VERSION ${REPO_VERSION}
-)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-# find required dependencies
-find_package(Qt5 COMPONENTS Core CONFIG REQUIRED)
-find_package(GTest REQUIRED)
-
-file(GLOB HEADER
-    ${PROJECT_SOURCE_DIR}/src/*.h
-    )
-
-file(GLOB SOURCE
-    ${PROJECT_SOURCE_DIR}/src/*.cpp
-    )
-
-# zera-json-params
-########################
-add_library(zera-json-params SHARED
-    ${HEADER}
-    ${SOURCE}
-)
-
-# announce headers - target perspective
-target_include_directories(zera-json-params
-    PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/zera-json-params>
-    )
-
-target_link_libraries(zera-json-params
-    PUBLIC
-    Qt5::Core
-    # ask linker to help us finding unresolved symbols
-    "-Wl,--no-undefined"
-    )
-
-
-#set target Version
-set_target_properties(zera-json-params PROPERTIES VERSION ${PROJECT_VERSION})
-
-# generate export header
-include(GenerateExportHeader)
-generate_export_header(zera-json-params)
-
-
-# install export header
-install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/zera-json-params_export.h
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/zera-json-params
-    )
-
-# install library
-install(TARGETS zera-json-params
-    EXPORT zera-json-paramsExport
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-
-# configure *ConfigVersion.cmake
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-    zera-json-paramsConfigVersion.cmake
-    VERSION ${PACKAGE_VERSION}
-    COMPATIBILITY SameMajorVersion
-    )
-
-# configure *Config.cmake
-configure_file(zera-json-paramsConfig.cmake.in zera-json-paramsConfig.cmake @ONLY)
-
-
-# install *Config(Version).cmake
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zera-json-paramsConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/zera-json-paramsConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-params
-    )
-
-# install targets cmake-files
-install(EXPORT zera-json-paramsExport
-    FILE zera-json-paramsTargets.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-params
-    )
-
-# install public headers
-install(
-    FILES ${HEADER}
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/zera-json-params
-    )
-
+add_subdirectory(lib)
 
 # zera-json-params-cli
 ####################
@@ -98,12 +7,6 @@ add_executable(zera-json-params-cli
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
-target_include_directories(zera-json-params-cli
-   PRIVATE
-   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
-)
-
-# link dependencies
 target_link_libraries(zera-json-params-cli
     PRIVATE
     Qt5::Core
@@ -112,16 +15,14 @@ target_link_libraries(zera-json-params-cli
     "-Wl,--no-undefined"
 )
 
-# install application
 install(TARGETS zera-json-params-cli
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 # Unittest
 ####################
-message(STATUS "building with unittest")
 file(GLOB UNITTEST_SOURCE
-    ${PROJECT_SOURCE_DIR}/unittest/*.cpp
+    unittest/*.cpp
     )
 add_executable(zera-json-params-unittest
     unittest/resources.qrc
@@ -183,7 +84,6 @@ target_include_directories(zera-json-params-unittest
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-enable_testing()
 add_test(NAME    zera-json-params-unittest
          COMMAND zera-json-params-unittest
 )
