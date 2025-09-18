@@ -1,8 +1,6 @@
 add_executable(zera-json-qml-unittest
     unittest-cpp.cpp
     resources.qrc
-    ../../zera-json-params/tests/zerajsonhelper.cpp
-    ../../zera-json-params/tests/zerajsonhelper.h
 )
 
 file(GLOB TEST_RESOURCE_FILES
@@ -28,6 +26,7 @@ target_link_libraries(zera-json-qml-unittest
     gtest
     gtest_main
     zera-json-qml
+    zera-json-helpers-testlib
 )
 add_test(NAME    zera-json-qml-unittest
          COMMAND zera-json-qml-unittest)

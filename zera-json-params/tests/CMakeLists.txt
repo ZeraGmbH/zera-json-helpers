@@ -3,7 +3,6 @@ file(GLOB UNITTEST_SOURCE
     )
 add_executable(zera-json-params-unittest
     resources.qrc
-    zerajsonhelper.h
     ${UNITTEST_SOURCE}
     )
 
@@ -42,6 +41,7 @@ target_link_libraries(zera-json-params-unittest
     gtest_main
     Qt5::Core
     zera-json-params
+    zera-json-helpers-testlib
 )
 
 add_test(NAME    zera-json-params-unittest

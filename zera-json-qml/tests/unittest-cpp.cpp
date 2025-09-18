@@ -2,7 +2,7 @@
 #include <QDir>
 #include <QJsonDocument>
 #include <declarativejsonitem.h>
-#include "../../zera-json-params/tests/zerajsonhelper.h"
+#include "zerajsonhelper.h"
 
 // positive in out same
 TEST(TEST_CPP,TYPE_LOAD_UNLOAD_COMPARE) {

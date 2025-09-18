@@ -27,5 +27,6 @@ endif()
 
 enable_testing()
 
+add_subdirectory(zera-json-helpers-testlib)
 add_subdirectory(zera-json-params)
 add_subdirectory(zera-json-qml)
