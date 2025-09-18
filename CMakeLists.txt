@@ -27,6 +27,25 @@ endif()
 
 enable_testing()
 
+write_basic_package_version_file(
+    zera-json-helpersConfigVersion.cmake
+    VERSION ${PACKAGE_VERSION}
+    COMPATIBILITY SameMajorVersion
+    )
+
+configure_file(zera-json-helpersConfig.cmake.in zera-json-helpersConfig.cmake @ONLY)
+
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zera-json-helpersConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/zera-json-helpersConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-helpers
+    )
+
+install(EXPORT zera-json-helpersExport
+    FILE zera-json-helpersTargets.cmake
+    NAMESPACE Zera::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-helpers
+    )
+
 add_subdirectory(zera-json-helpers-testlib)
 add_subdirectory(zera-json-params)
 add_subdirectory(zera-json-qml)

@@ -35,26 +35,8 @@ install(FILES
     )
 
 install(TARGETS zera-json-qml
-    EXPORT zera-json-qmlExport
+    EXPORT zera-json-helpersExport
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-
-write_basic_package_version_file(
-    zera-json-qmlConfigVersion.cmake
-    VERSION ${PACKAGE_VERSION}
-    COMPATIBILITY SameMajorVersion
-    )
-
-configure_file(zera-json-qmlConfig.cmake.in zera-json-qmlConfig.cmake @ONLY)
-
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zera-json-qmlConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/zera-json-qmlConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-qml
-    )
-
-install(EXPORT zera-json-qmlExport
-    FILE zera-json-qmlTargets.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-qml
     )
 
 install(

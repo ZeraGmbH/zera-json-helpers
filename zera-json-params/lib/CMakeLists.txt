@@ -33,26 +33,8 @@ install(FILES
     )
 
 install(TARGETS zera-json-params
-    EXPORT zera-json-paramsExport
+    EXPORT zera-json-helpersExport
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-
-write_basic_package_version_file(
-    zera-json-paramsConfigVersion.cmake
-    VERSION ${PACKAGE_VERSION}
-    COMPATIBILITY SameMajorVersion
-    )
-
-configure_file(zera-json-paramsConfig.cmake.in zera-json-paramsConfig.cmake @ONLY)
-
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/zera-json-paramsConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/zera-json-paramsConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-params
-    )
-
-install(EXPORT zera-json-paramsExport
-    FILE zera-json-paramsTargets.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/zera-json-params
     )
 
 install(
