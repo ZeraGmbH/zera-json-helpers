@@ -1,37 +1,3 @@
 add_subdirectory(lib)
+add_subdirectory(tests)
 
-# Unittest
-####################
-add_executable(zera-json-qml-unittest
-    tests/unittest-cpp.cpp
-    tests/resources.qrc
-    ../zera-json-params/unittest/zerajsonhelper.cpp
-    ../zera-json-params/unittest/zerajsonhelper.h
-)
-
-file(GLOB TEST_RESOURCE_FILES
-    tests/json-test-files/*.json
-    )
-
-# display in qt-creator
-add_custom_target(zera-json-qml-unittest-dont-forget-qrc ALL
-    SOURCES ${TEST_RESOURCE_FILES}
-    #COMMAND ${JSONLINT} ${TEST_RESOURCE_FILES}
-    )
-
-# check if all json test files made it into resources.qrc
-foreach(jsonfile ${TEST_RESOURCE_FILES})
-    get_filename_component(filename ${jsonfile} NAME)
-    file(STRINGS tests/resources.qrc lines REGEX "${filename}")
-    if(NOT lines)
-        message(FATAL_ERROR "${filename} was not added to resources.qrc - unittests will fail!!!")
-    endif()
-endforeach()
-
-target_link_libraries(zera-json-qml-unittest
-    gtest
-    gtest_main
-    zera-json-qml
-)
-add_test(NAME    zera-json-qml-unittest
-         COMMAND zera-json-qml-unittest)
