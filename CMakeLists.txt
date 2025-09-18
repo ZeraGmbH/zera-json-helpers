@@ -49,3 +49,5 @@ install(EXPORT zera-json-helpersExport
 add_subdirectory(zera-json-helpers-testlib)
 add_subdirectory(zera-json-params)
 add_subdirectory(zera-json-qml)
+add_subdirectory(zera-json-settings)
+
