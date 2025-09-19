@@ -9,7 +9,7 @@ class JsonSettingsFile : public QObject
 {
     Q_OBJECT
 public:
-    explicit JsonSettingsFile(QObject *t_parent = nullptr);
+    explicit JsonSettingsFile(QObject *parent = nullptr);
     static JsonSettingsFile *getInstance();
     bool loadFromStandardLocation(const QString &fileName);
     void setAutoWriteBackEnabled(bool autoWriteBackEnabled=true);
@@ -20,8 +20,8 @@ signals:
     void settingsSaveRequest(JsonSettingsFile *settingsFile);
 
 private:
-    bool loadFromFile(const QString &t_filePath);
-    void saveToFile(const QString &t_filePath, bool t_overwrite=false);
+    bool loadFromFile(const QString &filePath);
+    void saveToFile(const QString &filePath, bool overwrite=false);
     QString getCurrentFilePath();
     bool hasOption(const QString &key);
 

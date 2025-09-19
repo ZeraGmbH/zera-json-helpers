@@ -11,7 +11,7 @@
 
 class JsonSettingsFilePrivate {
 
-    JsonSettingsFilePrivate(JsonSettingsFile *t_qPtr) : q_ptr(t_qPtr) {}
+    JsonSettingsFilePrivate(JsonSettingsFile *qPtr) : q_ptr(qPtr) {}
 
     JsonSettingsFile *q_ptr;
     QString m_settingsFilePath;
@@ -24,8 +24,8 @@ class JsonSettingsFilePrivate {
     Q_DECLARE_PUBLIC(JsonSettingsFile)
 };
 
-JsonSettingsFile::JsonSettingsFile(QObject *t_parent) :
-    QObject(t_parent),
+JsonSettingsFile::JsonSettingsFile(QObject *parent) :
+    QObject(parent),
     d_ptr(new JsonSettingsFilePrivate(this))
 {
     d_ptr->m_transactionTimer.setSingleShot(false);
@@ -60,14 +60,14 @@ bool JsonSettingsFile::loadFromStandardLocation(const QString &fileName)
     return loadFromFile(QString("%1/%2").arg(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation), fileName));
 }
 
-bool JsonSettingsFile::loadFromFile(const QString &t_filePath)
+bool JsonSettingsFile::loadFromFile(const QString &filePath)
 {
     Q_D(JsonSettingsFile);
     bool retVal = false;
     QFile settingsFile;
-    settingsFile.setFileName(t_filePath);
+    settingsFile.setFileName(filePath);
     if(settingsFile.exists() && settingsFile.open(QFile::ReadOnly)) {
-        d->m_settingsFilePath = t_filePath;
+        d->m_settingsFilePath = filePath;
         QJsonParseError err;
         QJsonDocument jsonDoc = QJsonDocument::fromJson(settingsFile.readAll(), &err);
         if(err.error == QJsonParseError::NoError) {
@@ -79,18 +79,18 @@ bool JsonSettingsFile::loadFromFile(const QString &t_filePath)
         settingsFile.close();
     }
     else
-        qWarning() << "Settings file does not exists:" << t_filePath;
+        qWarning() << "Settings file does not exists:" << filePath;
     return retVal;
 }
 
-void JsonSettingsFile::saveToFile(const QString &t_filePath, bool t_overwrite)
+void JsonSettingsFile::saveToFile(const QString &filePath, bool overwrite)
 {
     Q_D(JsonSettingsFile);
     QFileInfo fInfo;
     QSaveFile settingsFile;
-    fInfo.setFile(t_filePath);
-    settingsFile.setFileName(t_filePath);
-    if((t_filePath.isEmpty() == false) && (!fInfo.exists() || t_overwrite) && settingsFile.open(QFile::WriteOnly)) {
+    fInfo.setFile(filePath);
+    settingsFile.setFileName(filePath);
+    if((filePath.isEmpty() == false) && (!fInfo.exists() || overwrite) && settingsFile.open(QFile::WriteOnly)) {
         QJsonDocument jsonDoc;
         jsonDoc.setObject(d->m_dataHolder);
         settingsFile.write(jsonDoc.toJson());
