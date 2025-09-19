@@ -20,12 +20,9 @@ class JsonSettingsFilePrivate {
 
     QTimer m_transactionTimer;
     bool m_autoWriteBackEnabled=false;
-    static QString m_applicationStandardLocation;
 
     Q_DECLARE_PUBLIC(JsonSettingsFile)
 };
-
-QString JsonSettingsFilePrivate::m_applicationStandardLocation = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
 
 JsonSettingsFile::JsonSettingsFile(QObject *t_parent) :
     QObject(t_parent),
@@ -58,14 +55,9 @@ JsonSettingsFile *JsonSettingsFile::getInstance()
     return s_globalSettings;
 }
 
-void JsonSettingsFile::setAppStandardLocation(const QString &appStandardLocation)
-{
-    JsonSettingsFilePrivate::m_applicationStandardLocation = appStandardLocation;
-}
-
 bool JsonSettingsFile::loadFromStandardLocation(const QString &fileName)
 {
-    return loadFromFile(QString("%1/%2").arg(JsonSettingsFilePrivate::m_applicationStandardLocation, fileName));
+    return loadFromFile(QString("%1/%2").arg(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation), fileName));
 }
 
 bool JsonSettingsFile::loadFromFile(const QString &t_filePath)

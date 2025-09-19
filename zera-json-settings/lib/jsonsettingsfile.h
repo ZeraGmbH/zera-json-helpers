@@ -11,7 +11,6 @@ class JsonSettingsFile : public QObject
 public:
     explicit JsonSettingsFile(QObject *t_parent = nullptr);
     static JsonSettingsFile *getInstance();
-    static void setAppStandardLocation(const QString &appStandardLocation);
     bool loadFromStandardLocation(const QString &fileName);
     void setAutoWriteBackEnabled(bool autoWriteBackEnabled=true);
 
