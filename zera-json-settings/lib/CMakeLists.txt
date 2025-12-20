@@ -12,7 +12,7 @@ add_library(zera-json-settings SHARED
 
 target_link_libraries(zera-json-settings
     PUBLIC
-    Qt5::Core
+    ${QTX}::Core
     )
 
 target_include_directories(zera-json-settings

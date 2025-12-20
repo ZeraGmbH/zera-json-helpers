@@ -39,7 +39,7 @@ endforeach()
 target_link_libraries(zera-json-params-unittest
     gtest
     gtest_main
-    Qt5::Core
+    ${QTX}::Core
     zera-json-params
     zera-json-helpers-testlib
 )

@@ -19,7 +19,7 @@ target_include_directories(zera-json-params
 
 target_link_libraries(zera-json-params
     PUBLIC
-    Qt5::Core
+    ${QTX}::Core
     # ask linker to help us finding unresolved symbols
     "-Wl,--no-undefined"
     )
