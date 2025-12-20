@@ -13,7 +13,7 @@ add_library(zera-json-helpers-testlib STATIC
 
 target_link_libraries(zera-json-helpers-testlib
     PUBLIC
-    Qt5::Core
+    ${QTX}::Core
     )
 
 target_include_directories(zera-json-helpers-testlib
