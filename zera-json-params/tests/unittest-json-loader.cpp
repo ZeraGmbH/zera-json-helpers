@@ -18,7 +18,7 @@ TEST(TEST_JSON_LOAD, LOAD_EXISTING) {
 TEST(TEST_JSON_LOAD, STORE_AND_COMPARE) {
     QJsonObject json = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_JSON_LOAD.json");
     QTemporaryFile tempFile;
-    tempFile.open();
+    EXPECT_TRUE(tempFile.open());
     EXPECT_TRUE(cJsonFileLoader::storeJsonFile(tempFile.fileName(), json));
     QJsonObject jsonStored = cJsonFileLoader::loadJsonFile(tempFile.fileName());
     EXPECT_EQ(json, jsonStored);

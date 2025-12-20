@@ -77,7 +77,7 @@ void DeclarativeJsonItem::createPropertyMapRecursive(DeclarativeJsonItem *qmlPro
         }
         else {
             QVariant& oldValue = (*qmlPropMap)[iter.key()];
-            if(oldValue.type() != QVariant::Invalid) { // re-create?
+            if (oldValue.isValid()) { // re-create?
                 QVariant convertedNewVal = iter.value().toVariant();
                 if(convertedNewVal.convert(oldValue.type())) {
                     if(convertedNewVal != oldValue) {

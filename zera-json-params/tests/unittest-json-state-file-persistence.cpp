@@ -11,8 +11,8 @@ TEST(TEST_JSON_PERSISTENCE, SAVE_INVALID_STATE) {
     QString fileName;
     {
         QTemporaryFile file;
-        file.open();
-        fileName = file.fileName();
+        if(file.open())
+            fileName = file.fileName();
     }
 
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
@@ -29,7 +29,7 @@ TEST(TEST_JSON_PERSISTENCE, SAVE_INVALID_STATE) {
 TEST(TEST_JSON_PERSISTENCE, SAVE_VALID_STATE) {
     JsonStateFilePersistence persistentStateHelper;
     QTemporaryFile file;
-    file.open();
+    EXPECT_TRUE(file.open());
 
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
     ZeraJsonParamsState defaultStateGenerator(stateStruct);
@@ -67,7 +67,7 @@ TEST(TEST_JSON_PERSISTENCE, LOAD_INVALID_FILE) {
 TEST(TEST_JSON_PERSISTENCE, LOAD_NOTEXIST_FILE) {
     JsonStateFilePersistence persistentStateHelper;
     QTemporaryFile file;
-    file.open();
+    EXPECT_TRUE(file.open());
     persistentStateHelper.setStateFilePath(file.fileName());
     QJsonObject stateStruct = cJsonFileLoader::loadJsonFile(":/json-test-files/TEST_PERSISTENCE_STRUCTURE.json");
     QJsonObject state = cJsonFileLoader::loadJsonFile(file.fileName());
