@@ -10,7 +10,6 @@
 class JsonStateFilePersistence
 {
 public:
-    JsonStateFilePersistence();
     void setStateFilePath(const QString& path);
     void setJsonParamStructure(const QJsonObject& jsonParamStructure);
 

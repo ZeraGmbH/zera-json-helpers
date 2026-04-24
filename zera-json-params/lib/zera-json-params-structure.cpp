@@ -1,10 +1,6 @@
 #include "zera-json-params-structure.h"
 #include <QSet>
 
-ZeraJsonParamsStructure::ZeraJsonParamsStructure()
-{
-}
-
 ZeraJsonParamsStructure::ErrList ZeraJsonParamsStructure::setJson(QJsonObject jsonStructure)
 {
     ErrList errList;

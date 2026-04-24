@@ -3,10 +3,6 @@
 #include "zera-jsonfileloader.h"
 #include "zera-json-params-state.h"
 
-JsonStateFilePersistence::JsonStateFilePersistence()
-{
-}
-
 void JsonStateFilePersistence::setStateFilePath(const QString& path)
 {
     m_stateFilePath = path;

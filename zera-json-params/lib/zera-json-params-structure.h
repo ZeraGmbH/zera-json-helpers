@@ -9,8 +9,6 @@
 class ZeraJsonParamsStructure
 {
 public:
-    ZeraJsonParamsStructure();
-
     enum errorTypes {
         ERR_INVALID_PARAM_TEMPLATE = 0,
         ERR_INVALID_PARAM_TEMPLATE_DEFINITION,
