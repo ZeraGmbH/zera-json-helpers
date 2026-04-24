@@ -4,9 +4,6 @@
 #include <QString>
 #include <QJsonObject>
 
-#include "zera-json-params-structure.h"
-
-
 class JsonStateFilePersistence
 {
 public:
@@ -14,7 +11,7 @@ public:
     void setJsonParamStructure(const QJsonObject& jsonParamStructure);
 
     QJsonObject loadState();
-    bool saveState(QJsonObject stateObject);
+    bool saveState(const QJsonObject &stateObject);
 
     QJsonObject getJsonParamStructure() const;
 

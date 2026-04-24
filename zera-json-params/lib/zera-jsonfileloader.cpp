@@ -2,7 +2,7 @@
 #include <QFile>
 #include <QJsonDocument>
 
-QJsonObject cJsonFileLoader::loadJsonFile(const QString fileName, QJsonParseError *jsonError)
+QJsonObject cJsonFileLoader::loadJsonFile(const QString &fileName, QJsonParseError *jsonError)
 {
     QJsonObject json;
     QFile file(fileName);
@@ -14,12 +14,12 @@ QJsonObject cJsonFileLoader::loadJsonFile(const QString fileName, QJsonParseErro
     return json;
 }
 
-bool cJsonFileLoader::storeJsonFile(const QString fileName, const QJsonObject &object)
+bool cJsonFileLoader::storeJsonFile(const QString &fileName, const QJsonObject &json)
 {
     bool success = false;
     QFile file(fileName);
     if(file.open(QIODevice::WriteOnly)) {
-        QJsonDocument doc(object);
+        QJsonDocument doc(json);
         file.write(doc.toJson(QJsonDocument::Indented));
         file.close();
         success = true;

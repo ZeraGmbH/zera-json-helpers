@@ -7,8 +7,8 @@
 class cJsonFileLoader
 {
 public:
-    static QJsonObject loadJsonFile(const QString fileName, QJsonParseError* jsonError = nullptr);
-    static bool storeJsonFile(const QString fileName, const QJsonObject& opbject);
+    static QJsonObject loadJsonFile(const QString &fileName, QJsonParseError* jsonError = nullptr);
+    static bool storeJsonFile(const QString &fileName, const QJsonObject& json);
 };
 
 #endif // CJSONFILELOADER_H

@@ -1,5 +1,4 @@
 #include "jsonstatefilepersistence.h"
-
 #include "zera-jsonfileloader.h"
 #include "zera-json-params-state.h"
 
@@ -38,7 +37,7 @@ QJsonObject JsonStateFilePersistence::loadState()
     return paramState;
 }
 
-bool JsonStateFilePersistence::saveState(QJsonObject stateObject)
+bool JsonStateFilePersistence::saveState(const QJsonObject &stateObject)
 {
     bool wasStored = false;
     if(checkStateValidity(stateObject)){
