@@ -6,7 +6,7 @@ QJsonValue cJSONFind::findJson(const QJsonObject &jsonObject, QStringList keyLis
     while(!keyList.isEmpty()) {
         QString key = keyList.takeFirst();
         if(foundValue.isObject() && foundValue.toObject().contains(key)) {
-            foundValue = foundValue.toObject()[key];
+            foundValue = foundValue.toObject().value(key);
         }
         else {
             foundValue = QJsonValue();

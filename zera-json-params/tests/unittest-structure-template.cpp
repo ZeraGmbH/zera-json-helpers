@@ -10,19 +10,18 @@ TEST(TEST_TEMPLATE,VALID){
     ZeraJsonParamsStructure jsonParamStructure;
     ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     EXPECT_EQ(errListStructure.isEmpty(), true) << "Expect no errors";
-    QJsonObject jsonStructure = jsonParamStructure.getJson();
 }
 
 TEST(TEST_TEMPLATE,INVALID_LINK) {
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,INVALID_LINK");
     ZeraJsonParamsStructure jsonParamStructure;
-    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    const ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
     // We expect:
     // 1. link
     // 2. type missing
     // 3. invalid property
     ASSERT_EQ(errListStructure.length(), 3);
-    for(auto err : errListStructure){
+    for(const auto &err : errListStructure){
         EXPECT_EQ(err.m_errType, ZeraJsonParamsStructure::errorTypes::ERR_INVALID_PARAM_DEFINITION);
     }
 }
@@ -38,7 +37,7 @@ TEST(TEST_TEMPLATE,VALID_CONTENT){
 TEST(TEST_TEMPLATE,VALID_CONTENT_RESOLVE_EXPECTED){
     QJsonObject jsonStructureRaw = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,VALID_CONTENT");
     ZeraJsonParamsStructure jsonParamStructure;
-    ZeraJsonParamsStructure::ErrList errListStructure = jsonParamStructure.setJson(jsonStructureRaw);
+    jsonParamStructure.setJson(jsonStructureRaw);
     QJsonObject jsonStructure = jsonParamStructure.getJson();
 
     QJsonObject jsonStructureExpected = ZeraJsonHelper::loadFromQrc("TEST_TEMPLATE,VALID_CONTENT_RESOLVE_EXPECTED");

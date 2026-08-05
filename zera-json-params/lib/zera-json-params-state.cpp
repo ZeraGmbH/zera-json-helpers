@@ -8,9 +8,9 @@ ZeraJsonParamsState::ZeraJsonParamsState()
 {
 }
 
-ZeraJsonParamsState::ZeraJsonParamsState(const QJsonObject jsonStructure)
+ZeraJsonParamsState::ZeraJsonParamsState(const QJsonObject jsonStructure) :
+    m_jsonStructure(jsonStructure)
 {
-    m_jsonStructure = jsonStructure;
 }
 
 void ZeraJsonParamsState::setStructure(const QJsonObject jsonStructure)
@@ -135,7 +135,10 @@ void ZeraJsonParamsState::validateJsonStateRecursive(const QJsonObject &jsonStat
     }
 }
 
-void ZeraJsonParamsState::validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, ZeraJsonParamsState::ErrList &errList)
+void ZeraJsonParamsState::validateJsonStateValue(const QJsonValue &jsonStateValue,
+                                                 const QStringList &jsonStatePathList,
+                                                 QJsonValue jsonParamValueStructure,
+                                                 ZeraJsonParamsState::ErrList &errList)
 {
     QJsonObject jsonValueStruct = jsonParamValueStructure.toObject();
     QString type = jsonValueStruct["type"].toString();
@@ -180,7 +183,7 @@ void ZeraJsonParamsState::validateJsonStateValue(const QJsonValue &jsonStateValu
     }
 }
 
-ZeraJsonParamsState::errEntry::errEntry(ZeraJsonParamsState::errorTypes errType, QString strInfo) :
+ZeraJsonParamsState::errEntry::errEntry(ZeraJsonParamsState::errorTypes errType, const QString &strInfo) :
     m_errType(errType),
     m_strInfo(strInfo)
 {

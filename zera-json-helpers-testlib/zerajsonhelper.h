@@ -7,9 +7,8 @@
 class ZeraJsonHelper
 {
 public:
-    ZeraJsonHelper();
-    static QJsonObject loadFromQrc(const QString strTestName);
-    static bool checkJsonObject(QJsonObject p_data);
+    static QJsonObject loadFromQrc(const QString &strTestName);
+    static bool checkJsonObject(const QJsonObject &jsonObject);
 };
 
 #endif // ZERAJSONHELPER_H

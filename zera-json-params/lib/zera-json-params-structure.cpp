@@ -162,7 +162,7 @@ void ZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter,
         // need to plaster checks all over the place
         if(validType && !inTemplate) {
             QStringList typeParams = m_svalidParamTypes[type];
-            for(auto paramRequired : typeParams) {
+            for(const QString &paramRequired : typeParams) {
                 if(!paramObject.contains(paramRequired)) {
                     errEntry error(inTemplate ? ERR_INVALID_PARAM_TEMPLATE_DEFINITION : ERR_INVALID_PARAM_DEFINITION,
                                    treePosPrint + "." + paramRequired + " missing for type " + type);
@@ -253,7 +253,9 @@ void ZeraJsonParamsStructure::validateParamData(QJsonObject::ConstIterator iter,
     }
 }
 
-void ZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &jsonStructObj, QStringList jsonStructurePathList, ZeraJsonParamsStructure::ErrList &errList)
+void ZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &jsonStructObj,
+                                                                 QStringList jsonStructurePathList,
+                                                                 ZeraJsonParamsStructure::ErrList &errList)
 {
     for(QJsonObject::Iterator sub=jsonStructObj.begin(); sub!=jsonStructObj.end(); sub++) {
         QString key = sub.key();
@@ -277,7 +279,8 @@ void ZeraJsonParamsStructure::validateResolvedParamDataRecursive(QJsonObject &js
     }
 }
 
-ZeraJsonParamsStructure::errEntry::errEntry(ZeraJsonParamsStructure::errorTypes errType, QString strInfo) :
+ZeraJsonParamsStructure::errEntry::errEntry(ZeraJsonParamsStructure::errorTypes errType,
+                                            const QString &strInfo) :
     m_errType(errType),
     m_strInfo(strInfo)
 {

@@ -20,12 +20,12 @@ bool ZeraJsonKeyComparer::haveJsonsSameKeysTop(const QJsonObject &json1, const Q
 
 bool ZeraJsonKeyComparer::containsAllKeysTop(const QJsonObject &jsonReference, const QJsonObject &jsonTest)
 {
-    QStringList refKeys = jsonReference.keys();
-    QStringList testKeys = jsonTest.keys();
+    const QStringList refKeys = jsonReference.keys();
+    const QStringList testKeys = jsonTest.keys();
     const QSet<QString> testKeysSet = QSet<QString>(testKeys.begin(), testKeys.end());
 
     bool allKeysFound = true;
-    for(auto key : refKeys) {
+    for(const QString &key : refKeys) {
         if(!testKeysSet.contains(key)) {
             allKeysFound = false;
             break;

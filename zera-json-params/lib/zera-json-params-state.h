@@ -22,7 +22,7 @@ public:
         ERR_INVALID_STRUCTURE_FATAL // This must never happen: we test structures
     };
     struct errEntry {
-        errEntry(enum errorTypes errType, QString strInfo);
+        errEntry(enum errorTypes errType, const QString &strInfo);
         QString strID();
         enum errorTypes m_errType;
         QString m_strInfo;
@@ -36,9 +36,12 @@ public:
     bool isJsonStateComplete(const QJsonObject &jsonState);
 
 private:
-    void getDefaultJsonStateRecursive(QJsonObject& jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
+    static void getDefaultJsonStateRecursive(QJsonObject& jsonStateObj, const QJsonObject &jsonStructObj, QStringList jsonStructurePathList);
     void validateJsonStateRecursive(const QJsonObject &jsonStateObj, QStringList jsonStatePathList, ErrList &errList);
-    void validateJsonStateValue(const QJsonValue &jsonStateValue, const QStringList jsonStatePathList, QJsonValue jsonParamValueStructure, ErrList &errList);
+    static void validateJsonStateValue(const QJsonValue &jsonStateValue,
+                                       const QStringList &jsonStatePathList,
+                                       QJsonValue jsonParamValueStructure,
+                                       ErrList &errList);
 
     QJsonObject m_jsonStructure;
     QJsonObject m_jsonDefaultState;

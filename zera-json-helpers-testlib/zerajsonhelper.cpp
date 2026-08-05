@@ -3,11 +3,7 @@
 #include <QFile>
 #include <QJsonDocument>
 
-ZeraJsonHelper::ZeraJsonHelper()
-{
-}
-
-QJsonObject ZeraJsonHelper::loadFromQrc(const QString strTestName)
+QJsonObject ZeraJsonHelper::loadFromQrc(const QString &strTestName)
 {
     QJsonObject objRet;
     QString fileName = QStringLiteral("://json-test-files/")+strTestName+QStringLiteral(".json");
@@ -19,10 +15,10 @@ QJsonObject ZeraJsonHelper::loadFromQrc(const QString strTestName)
     return objRet;
 }
 
-bool ZeraJsonHelper::checkJsonObject(QJsonObject p_data)
+bool ZeraJsonHelper::checkJsonObject(const QJsonObject &jsonObject)
 {
     bool retVal=false;
-    if(p_data.isEmpty()){
+    if(jsonObject.isEmpty()){
         retVal=true;
         std::cerr << "The Provided json object is empty. Your test might fail therefore" << std::endl;
     }

@@ -15,7 +15,8 @@ public:
         ERR_INVALID_PARAM_DEFINITION,
     };
     struct errEntry {
-        errEntry(enum errorTypes errType, QString strInfo);
+        errEntry(enum errorTypes errType,
+                 const QString &strInfo);
         QString strID();
         enum errorTypes m_errType;
         QString m_strInfo;
@@ -29,9 +30,16 @@ public:
 
 private:
     void resolveJsonParamTemplates(QJsonObject& jsonStructObj, ErrList& errList);
-    bool resolveJsonParamTemplatesRecursive(QJsonObject& jsonStructObj, const QJsonObject jsonParamTemplatesObj, ErrList& errList);
-    void validateParamData(QJsonObject::ConstIterator iter, bool inTemplate, QStringList jsonStructurePathList, ErrList& errList);
-    void validateResolvedParamDataRecursive(QJsonObject& jsonStructObj, QStringList jsonStructurePathList, ErrList& errList);
+    static bool resolveJsonParamTemplatesRecursive(QJsonObject& jsonStructObj,
+                                                   const QJsonObject jsonParamTemplatesObj,
+                                                   ErrList& errList);
+    static void validateParamData(QJsonObject::ConstIterator iter,
+                                  bool inTemplate,
+                                  QStringList jsonStructurePathList,
+                                  ErrList& errList);
+    static void validateResolvedParamDataRecursive(QJsonObject& jsonStructObj,
+                                                   QStringList jsonStructurePathList,
+                                                   ErrList& errList);
 
     QJsonObject m_jsonObjStructure;
     static QSet<QString> m_svalidParamEntryKeys;

@@ -11,7 +11,7 @@
 
 class JsonSettingsFilePrivate {
 
-    JsonSettingsFilePrivate(JsonSettingsFile *qPtr) : q_ptr(qPtr) {}
+    explicit JsonSettingsFilePrivate(JsonSettingsFile *qPtr) : q_ptr(qPtr) {}
 
     JsonSettingsFile *q_ptr;
     QString m_settingsFilePath;
@@ -35,12 +35,12 @@ JsonSettingsFile::JsonSettingsFile(QObject *parent) :
 
     // to avoid save storms when multiple options are saved in short time
     // (e.g on first start setting all defaults) we (re)start a timer
-    connect(this,&JsonSettingsFile::settingsSaveRequest,[this]() {
+    connect(this, &JsonSettingsFile::settingsSaveRequest, [this]() {
         if(d_ptr->m_autoWriteBackEnabled) {
             d_ptr->m_transactionTimer.start(500);
         }
     });
-    connect(&d_ptr->m_transactionTimer,&QTimer::timeout,[this]() {
+    connect(&d_ptr->m_transactionTimer, &QTimer::timeout, this, [this]() {
         if(d_ptr->m_autoWriteBackEnabled) {
             d_ptr->m_transactionTimer.stop();
             saveToFile(getCurrentFilePath(), true);
@@ -153,6 +153,5 @@ bool JsonSettingsFile::setOption(const QString &key, const QString &value)
 
 void JsonSettingsFile::setAutoWriteBackEnabled(bool autoWriteBackEnabled)
 {
-    if(d_ptr->m_autoWriteBackEnabled != autoWriteBackEnabled)
-        d_ptr->m_autoWriteBackEnabled=autoWriteBackEnabled;
+    d_ptr->m_autoWriteBackEnabled = autoWriteBackEnabled;
 }
