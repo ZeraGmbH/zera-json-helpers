@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>json-test-files/TEST_CPP,TYPE_LOAD_UNLOAD_COMPARE.json</file>
-    </qresource>
-</RCC>

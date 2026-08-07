@@ -17,7 +17,7 @@ set(CMAKE_AUTORCC ON)
 set(QT_MAJOR_VER "5" CACHE STRING "Qt major version")
 set(QTX "Qt${QT_MAJOR_VER}")
 
-find_package(${QTX} COMPONENTS Core Qml Test CONFIG REQUIRED)
+find_package(${QTX} COMPONENTS Core Test CONFIG REQUIRED)
 find_package(GTest REQUIRED)
 
 # Note 1: In OE we do not (yet) have jsonlint-php so it must be optional
@@ -52,6 +52,4 @@ install(EXPORT zera-json-helpersExport
 
 add_subdirectory(zera-json-helpers-testlib)
 add_subdirectory(zera-json-params)
-add_subdirectory(zera-json-qml)
 add_subdirectory(zera-json-settings)
-
